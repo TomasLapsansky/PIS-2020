@@ -23,6 +23,6 @@
 hs_err_pid*
 
 #others
-*.idea
-./pis_webapp/node_modules
-./pis_webapp/target
+**/.idea
+**/node_modules
+**/target
