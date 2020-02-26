@@ -22,7 +22,7 @@
 
 
 ## Useful links :)
-- http://localhost::8081 - landing page
+- http://localhost:8081 - landing page
 - http://localhost:8081/api - Spring REST API
 - http://localhost:8080 - adminer
 
