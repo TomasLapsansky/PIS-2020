@@ -1,15 +1,13 @@
-version: '3.7'
+version: '3'
 services:
   app:
     image: tomcat:9.0.30
     container_name: app
     ports:
-      - "8081:8080"
+      - "80:8080"
     restart: always
     volumes:
-      - type: bind
-        source: ./pis_webapp/target/demo-0.0.1-SNAPSHOT.war
-        target: /usr/local/tomcat/webapps/ROOT.war
+      - ./pis_webapp/target/demo-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/ROOT.war
     command: catalina.sh run
     links:
       - db
