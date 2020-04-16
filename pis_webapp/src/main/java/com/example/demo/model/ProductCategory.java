@@ -11,5 +11,12 @@ public class ProductCategory implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @ManyToOne
+    @JoinColumn(name = "categoryID")
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "ProductID")
+    private Product product;
 
 }

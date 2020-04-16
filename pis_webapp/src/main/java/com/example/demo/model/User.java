@@ -21,6 +21,7 @@ public class User  implements Serializable {
     private String code;
     private String address;
 
+    /* TODO how to access role ? */
     @ManyToOne
     @JoinColumn(name = "roleID")
     private Role role;
