@@ -1,9 +1,0 @@
-package com.vut.fit.pis2020.model.Repository;
-
-import com.vut.fit.pis2020.model.Category;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
-
-@Repository
-public interface CategoryRepository extends CrudRepository<Category, Integer> {
-}
