@@ -27,7 +27,12 @@ public class Role implements Serializable {
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<User> users = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "role")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "role_privilege",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "privilege_id")
+    )
     private List<Privilege> privileges;
 
     public Long getId() {
