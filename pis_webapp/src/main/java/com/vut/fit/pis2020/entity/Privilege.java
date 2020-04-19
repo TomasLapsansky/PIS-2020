@@ -27,6 +27,9 @@ public class Privilege implements Serializable {
     @Column(name = "action")
     private String action;
 
+    @OneToMany(mappedBy = "privilege")
+    private List<RolePrivilege> rolePrivileges;
+
     public Long getId() {
         return id;
     }
@@ -49,5 +52,13 @@ public class Privilege implements Serializable {
 
     public void setAction(String action) {
         this.action = action;
+    }
+
+    public List<RolePrivilege> getRolePrivileges() {
+        return rolePrivileges;
+    }
+
+    public void setRolePrivileges(List<RolePrivilege> rolePrivileges) {
+        this.rolePrivileges = rolePrivileges;
     }
 }

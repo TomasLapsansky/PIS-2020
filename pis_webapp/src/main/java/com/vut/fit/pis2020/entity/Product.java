@@ -41,7 +41,25 @@ public class Product implements Serializable {
     private Boolean available;
 
     @OneToMany(mappedBy = "product")
-    private List<StoreEntity> storeEntity;
+    private List<StoreEntity> storeEntities;
+
+    @OneToMany(mappedBy = "product")
+    private List<ProductCategory> productCategories;
+
+    @OneToMany(mappedBy = "product")
+    private List<ProductPhoto> productPhotos;
+
+    @OneToMany(mappedBy = "product")
+    private List<CartItem> cartItems;
+
+    @OneToMany(mappedBy = "product")
+    private List<ProductFavorite> productFavorites;
+
+    @OneToMany(mappedBy = "product")
+    private List<ProductDiscount> productDiscounts;
+
+    @OneToMany(mappedBy = "product")
+    private List<OrderItem> orderItems;
 
     public Long getId() {
         return id;
@@ -91,11 +109,59 @@ public class Product implements Serializable {
         this.available = available;
     }
 
-    public List<StoreEntity> getStoreEntity() {
-        return storeEntity;
+    public List<StoreEntity> getStoreEntities() {
+        return storeEntities;
     }
 
-    public void setStoreEntity(List<StoreEntity> storeEntity) {
-        this.storeEntity = storeEntity;
+    public void setStoreEntities(List<StoreEntity> storeEntities) {
+        this.storeEntities = storeEntities;
+    }
+
+    public List<ProductCategory> getProductCategories() {
+        return productCategories;
+    }
+
+    public void setProductCategories(List<ProductCategory> productCategories) {
+        this.productCategories = productCategories;
+    }
+
+    public List<ProductPhoto> getProductPhotos() {
+        return productPhotos;
+    }
+
+    public void setProductPhotos(List<ProductPhoto> productPhotos) {
+        this.productPhotos = productPhotos;
+    }
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+    public List<ProductFavorite> getProductFavorites() {
+        return productFavorites;
+    }
+
+    public void setProductFavorites(List<ProductFavorite> productFavorites) {
+        this.productFavorites = productFavorites;
+    }
+
+    public List<ProductDiscount> getProductDiscounts() {
+        return productDiscounts;
+    }
+
+    public void setProductDiscounts(List<ProductDiscount> productDiscounts) {
+        this.productDiscounts = productDiscounts;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }

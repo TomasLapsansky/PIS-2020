@@ -27,13 +27,8 @@ public class Role implements Serializable {
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<User> users = new ArrayList<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "role_privilege",
-            joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "privilege_id")
-    )
-    private List<Privilege> privileges;
+    @OneToMany(mappedBy = "role")
+    private List<RolePrivilege> rolePrivileges;
 
     public Long getId() {
         return id;
@@ -59,11 +54,11 @@ public class Role implements Serializable {
         this.users = users;
     }
 
-    public List<Privilege> getPrivileges() {
-        return privileges;
+    public List<RolePrivilege> getRolePrivileges() {
+        return rolePrivileges;
     }
 
-    public void setPrivileges(List<Privilege> privileges) {
-        this.privileges = privileges;
+    public void setRolePrivileges(List<RolePrivilege> rolePrivileges) {
+        this.rolePrivileges = rolePrivileges;
     }
 }

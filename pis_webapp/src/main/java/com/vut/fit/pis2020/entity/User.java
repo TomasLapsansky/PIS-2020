@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "app_user")
@@ -60,6 +61,18 @@ public class User implements Serializable {
     @JoinColumn(name = "role_id", nullable = false)
     @JsonIgnore
     private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private List<CartItem> cartItems;
+
+    @OneToMany(mappedBy = "user")
+    private List<ProductFavorite> productFavorites;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
+
+    @OneToMany(mappedBy = "employee")
+    private List<OrderRMA> orderEmployeeRMAs;
 
     public Long getId() {
         return id;
@@ -131,5 +144,37 @@ public class User implements Serializable {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public List<CartItem> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+    public List<ProductFavorite> getProductFavorites() {
+        return productFavorites;
+    }
+
+    public void setProductFavorites(List<ProductFavorite> productFavorites) {
+        this.productFavorites = productFavorites;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public List<OrderRMA> getOrderEmployeeRMAs() {
+        return orderEmployeeRMAs;
+    }
+
+    public void setOrderEmployeeRMAs(List<OrderRMA> orderEmployeeRMAs) {
+        this.orderEmployeeRMAs = orderEmployeeRMAs;
     }
 }
