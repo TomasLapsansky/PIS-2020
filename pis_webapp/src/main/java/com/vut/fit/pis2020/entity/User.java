@@ -42,17 +42,14 @@ public class User implements Serializable {
     @Column(name = "surname")
     private String surName;
 
-    @Null
     @Size(max = 255)
     @Column(name = "city")
     private String city;
 
-    @Null
     @Size(max = 15)
     @Column(name = "code")
     private String code;
 
-    @Null
     @Size(max = 255)
     @Column(name = "address")
     private String address;
