@@ -123,6 +123,33 @@
 						</configuration>
 					</execution>
 					<execution>
+						<id>npm install redux</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install redux</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>npm install react-redux</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install react-redux</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>npm install react-router-dom</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install react-router-dom</arguments>
+						</configuration>
+					</execution>
+					<execution>
 						<id>webpack build</id>
 						<goals>
 							<goal>webpack</goal>

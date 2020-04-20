@@ -11,4 +11,10 @@ public class homeController {
         return "index";
     }
 
+    @RequestMapping("/admin")
+    public String admin() { return "index"; }
+
+    @RequestMapping("/admin/users")
+    public String adminUsersIndex() { return "index"; }
+
 }

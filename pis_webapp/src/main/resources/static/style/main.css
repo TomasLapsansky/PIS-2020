@@ -1,14 +1,6 @@
 body {
   margin: 0; }
 
-#react {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: navy; }
-
 span {
   font-size: 64px;
   -webkit-animation: color-change 2s infinite;
@@ -52,5 +44,36 @@ span {
     color: green; }
   100% {
     color: red; } }
+div.admin {
+  display: flex; }
+  div.admin aside {
+    height: 100vh;
+    width: 250px;
+    background: #391356;
+    color: white;
+    padding: 24px;
+    box-sizing: border-box; }
+    div.admin aside ul {
+      list-style: none;
+      padding: 0;
+      margin: 0; }
+      div.admin aside ul li {
+        font-size: 20px;
+        padding: 8px 0; }
+    div.admin aside a {
+      color: white;
+      transition: .05s;
+      text-decoration: none; }
+      div.admin aside a:hover {
+        color: #738CA6;
+        text-decoration: none; }
+
+#admin-index {
+  display: flex; }
+  #admin-index div.content {
+    width: calc(100vw - 3250px); }
+
+#admin-user-index div.user-index {
+  width: calc(100vw - 250px); }
 
 /*# sourceMappingURL=main.css.map */
