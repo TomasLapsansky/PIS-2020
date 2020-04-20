@@ -8,9 +8,9 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "photo")
+@Table(name = "product_photo")
 @EntityListeners(AuditingEntityListener.class)
-public class Photo implements Serializable {
+public class ProductPhoto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

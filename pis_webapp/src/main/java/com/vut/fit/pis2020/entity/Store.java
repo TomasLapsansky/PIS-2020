@@ -30,7 +30,7 @@ public class Store implements Serializable {
     private String location;
 
     @OneToMany(mappedBy = "store")
-    private List<StoreEntity> storeEntity;
+    private List<StoreEntity> storeEntities;
 
     public Long getId() {
         return id;
@@ -56,11 +56,11 @@ public class Store implements Serializable {
         this.location = location;
     }
 
-    public List<StoreEntity> getStoreEntity() {
-        return storeEntity;
+    public List<StoreEntity> getStoreEntities() {
+        return storeEntities;
     }
 
-    public void setStoreEntity(List<StoreEntity> storeEntity) {
-        this.storeEntity = storeEntity;
+    public void setStoreEntities(List<StoreEntity> storeEntities) {
+        this.storeEntities = storeEntities;
     }
 }
