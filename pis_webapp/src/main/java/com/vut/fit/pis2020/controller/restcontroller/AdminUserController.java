@@ -5,6 +5,7 @@ import com.vut.fit.pis2020.dto.UserDto;
 import com.vut.fit.pis2020.entity.User;
 import com.vut.fit.pis2020.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -19,6 +20,9 @@ public class AdminUserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/api/admin/users")
     public List<UserDto> index() {
@@ -47,7 +51,7 @@ public class AdminUserController {
         HashMap<String, String> returnCode = new HashMap<>();
 
         if(userService.findByEmail(userDto.getEmail()) != null) {
-            returnCode.put("400", "There is already a user registered with the email provided");
+            returnCode.put("409", "There is already a user registered with the email provided");
 
             return returnCode;
         }
@@ -55,7 +59,39 @@ public class AdminUserController {
         User user = userDtoConverter.convertToUser(userDto);
         userService.save(user);
 
-        returnCode.put("200", "User registered");
+        returnCode.put("201", "User registered");
+
+        return returnCode;
+    }
+
+    @PostMapping("/api/admin/users/update")
+    public HashMap<String, String> updateUser(@ModelAttribute("user") UserDto userDto) {
+
+        HashMap<String, String> returnCode = new HashMap<>();
+
+        User user = userService.findById(userDto.getId());
+
+        if(user == null) {
+            returnCode.put("409", "There is no user with this id");
+
+            return returnCode;
+        }
+
+        /* Set new password if exists */
+        if(userDto.getPassword() != null) {
+            user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        }
+
+        user.setEmail(userDto.getEmail());
+        user.setName(userDto.getName());
+        user.setSurName(userDto.getSurname());
+        user.setAddress(userDto.getAddress());
+        user.setCity(userDto.getCity());
+        user.setCode(userDto.getCode());
+
+        userService.save(user);
+
+        returnCode.put("201", "User updated");
 
         return returnCode;
     }
