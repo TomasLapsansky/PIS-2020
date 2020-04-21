@@ -28,9 +28,8 @@ public class ProductPhoto implements Serializable {
     private String description;
 
     @NotNull
-    @Lob
-    @Column(name = "file", length = 1000000)
-    private byte[] file;
+    @Column(name = "file_path")
+    private String file;
 
     @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
@@ -61,11 +60,11 @@ public class ProductPhoto implements Serializable {
         this.description = description;
     }
 
-    public byte[] getFile() {
+    public String getFile() {
         return file;
     }
 
-    public void setFile(byte[] file) {
+    public void setFile(String file) {
         this.file = file;
     }
 
