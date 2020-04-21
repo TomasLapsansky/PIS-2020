@@ -2,7 +2,9 @@ package com.vut.fit.pis2020.controller.restcontroller;
 
 import com.vut.fit.pis2020.converter.UserDtoConverter;
 import com.vut.fit.pis2020.dto.UserDto;
+import com.vut.fit.pis2020.entity.Role;
 import com.vut.fit.pis2020.entity.User;
+import com.vut.fit.pis2020.service.RoleService;
 import com.vut.fit.pis2020.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,6 +22,9 @@ public class AdminUserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RoleService roleService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -57,6 +62,10 @@ public class AdminUserController {
         }
 
         User user = userDtoConverter.convertToUser(userDto);
+
+        Role basicRole = roleService.findByName("user");
+        user.setRole(basicRole);
+
         userService.save(user);
 
         returnCode.put("201", "User registered");
