@@ -18,19 +18,19 @@ import java.util.List;
 public class AdminUserController {
 
     @Autowired
-    private UserDtoConverter userDtoConverter;
-
-    @Autowired
     private UserService userService;
 
     @Autowired
     private RoleService roleService;
 
     @Autowired
+    private UserDtoConverter userDtoConverter;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @GetMapping("/api/admin/users")
-    public List<UserDto> index() {
+    public List<UserDto> getAllUsers() {
 
         List<User> allUsers = userService.findAll();
         List<UserDto> allUsersDto = new ArrayList<>();
@@ -84,6 +84,16 @@ public class AdminUserController {
             returnCode.put("409", "There is no user with this id");
 
             return returnCode;
+        }
+
+        /* Check unique email */
+        if(!user.getEmail().equals(userDto.getEmail())) {
+
+            if(userService.findByEmail(userDto.getEmail()) != null) {
+                returnCode.put("409", "There is already a user with the email provided");
+
+                return returnCode;
+            }
         }
 
         /* Set new password if exists */
