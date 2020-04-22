@@ -1,5 +1,7 @@
 package com.vut.fit.pis2020.controller.restcontroller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vut.fit.pis2020.converter.UserDtoConverter;
 import com.vut.fit.pis2020.dto.UserDto;
 import com.vut.fit.pis2020.entity.Role;
@@ -51,9 +53,12 @@ public class AdminUserController {
     }
 
     @PostMapping("/api/admin/users/create")
-    public HashMap<String, String> createUser(@ModelAttribute("user") UserDto userDto) {
+    public HashMap<String, String> createUser(@RequestBody String userJSON) throws JsonProcessingException {
 
         HashMap<String, String> returnCode = new HashMap<>();
+
+        ObjectMapper mapper = new ObjectMapper();
+        UserDto userDto = mapper.readValue(userJSON, UserDto.class);
 
         if(userService.findByEmail(userDto.getEmail()) != null) {
             returnCode.put("409", "There is already a user registered with the email provided");
@@ -74,9 +79,12 @@ public class AdminUserController {
     }
 
     @PostMapping("/api/admin/users/update")
-    public HashMap<String, String> updateUser(@ModelAttribute("user") UserDto userDto) {
+    public HashMap<String, String> updateUser(@RequestBody String userJSON) throws JsonProcessingException {
 
         HashMap<String, String> returnCode = new HashMap<>();
+
+        ObjectMapper mapper = new ObjectMapper();
+        UserDto userDto = mapper.readValue(userJSON, UserDto.class);
 
         User user = userService.findById(userDto.getId());
 

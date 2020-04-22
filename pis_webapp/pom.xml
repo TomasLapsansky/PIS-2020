@@ -150,6 +150,33 @@
 						</configuration>
 					</execution>
 					<execution>
+						<id>npm install --save-dev @babel/plugin-proposal-class-properties</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install --save-dev @babel/plugin-proposal-class-properties</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>npm install --save-dev babel-plugin-transform-runtime</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install --save-dev @babel/plugin-transform-runtime</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>npm install --save reactstrap</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install --save reactstrap</arguments>
+						</configuration>
+					</execution>
+					<execution>
 						<id>webpack build</id>
 						<goals>
 							<goal>webpack</goal>

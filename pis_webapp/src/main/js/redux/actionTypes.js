@@ -1,0 +1,4 @@
+export const SET_ADMIN_MENU_ACTIVE = 'SET_ADMIN_MENU_ACTIVE';
+
+export const LOAD_USER_LIST = 'LOAD_USERS';
+export const UPDATE_USER = 'UPDATE_USER';

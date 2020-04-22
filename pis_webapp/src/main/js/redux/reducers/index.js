@@ -1,5 +1,7 @@
 import { combineReducers } from "redux";
 
-import adminUser from "./admin-user";
+import sidebar from "./sidebar";
+import userList from "./userList";
+import user from "./user";
 
-export default combineReducers({ adminUser });
+export default combineReducers({ sidebar, userList, user });
