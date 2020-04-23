@@ -1,6 +1,7 @@
 package com.vut.fit.pis2020.converter;
 
 import com.vut.fit.pis2020.dto.ProductBasicDto;
+import com.vut.fit.pis2020.dto.ProductDetailDto;
 import com.vut.fit.pis2020.dto.ProductDto;
 import com.vut.fit.pis2020.dto.ProductPhotoDto;
 import com.vut.fit.pis2020.entity.Product;
@@ -60,6 +61,33 @@ public class ProductDtoConverter {
         return productDto;
     }
 
+    public ProductDetailDto convertToProductDetailDto(Product product) {
+        ProductDetailDto productDetailDto = null;
+
+        if(product != null) {
+            productDetailDto = new ProductDetailDto();
+            productDetailDto.setId(product.getId());
+            productDetailDto.setName(product.getName());
+            productDetailDto.setSpecification(product.getSpecification());
+            productDetailDto.setDescription(product.getDescription());
+            productDetailDto.setPrice(product.getPrice());    // TODO
+            productDetailDto.setPriceTax(product.getPrice() * 1.20); // TAX
+            productDetailDto.setInDiscount(false);    // TODO
+            productDetailDto.setBeforeDiscountPrice(null);
+            productDetailDto.setAvailable(product.getAvailable());
+
+            List<ProductPhoto> productPhotos = productService.findPhotosByProduct(product.getId());
+
+            List<ProductPhotoDto> productPhotosDto = new ArrayList<>();
+            for (ProductPhoto productPhoto: productPhotos) {
+                productPhotosDto.add(convertToProductPhotoDto(productPhoto));
+            }
+            productDetailDto.setPhotos(productPhotosDto);
+        }
+
+        return productDetailDto;
+    }
+
     public ProductBasicDto convertToProductBasicDto(Product product) {
         ProductBasicDto productBasicDto = null;
 
@@ -70,6 +98,12 @@ public class ProductDtoConverter {
             productBasicDto.setPrice(product.getPrice());    // TODO
             productBasicDto.setInDiscount(false);    // TODO
             productBasicDto.setAvailable(product.getAvailable());
+
+            List<ProductPhoto> productPhotos = productService.findPhotosByProduct(product.getId());
+
+            if(!productPhotos.isEmpty()) {
+                productBasicDto.setPrimaryPhoto(convertToProductPhotoDto(productPhotos.get(0)));
+            }
         }
 
         return productBasicDto;

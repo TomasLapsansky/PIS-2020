@@ -38,6 +38,10 @@ public class CategoryService {
         return productCategoryRepository.findProductCategoryConnection(productId, categoryId);
     }
 
+    public List<Category> findAllByParent(Category parent) {
+        return categoryRepository.findAllByParentCategory(parent);
+    }
+
     /* Product category connection */
 
     public ProductCategory getProductCategory(Long id) {
