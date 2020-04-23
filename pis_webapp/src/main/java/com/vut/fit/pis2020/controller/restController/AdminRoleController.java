@@ -1,7 +1,7 @@
-package com.vut.fit.pis2020.controller.restcontroller;
+package com.vut.fit.pis2020.controller.restController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.vut.fit.pis2020.converter.JsonObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vut.fit.pis2020.converter.RoleDtoConverter;
 import com.vut.fit.pis2020.dto.RoleDto;
 import com.vut.fit.pis2020.dto.UserRoleDto;
@@ -29,7 +29,7 @@ public class AdminRoleController {
     private RoleDtoConverter roleDtoConverter;
 
     @Autowired
-    private JsonObjectMapper jsonObjectMapper;
+    private ObjectMapper jsonObjectMapper;
 
     @GetMapping("/api/admin/roles")
     public List<RoleDto> getAllRoles() {

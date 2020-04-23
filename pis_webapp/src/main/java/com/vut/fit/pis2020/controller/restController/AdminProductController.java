@@ -1,12 +1,11 @@
-package com.vut.fit.pis2020.controller.restcontroller;
+package com.vut.fit.pis2020.controller.restController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.vut.fit.pis2020.converter.JsonObjectMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vut.fit.pis2020.converter.ProductDtoConverter;
 import com.vut.fit.pis2020.dto.ProductBasicDto;
 import com.vut.fit.pis2020.dto.ProductDto;
 import com.vut.fit.pis2020.dto.ProductPhotoDto;
-import com.vut.fit.pis2020.dto.UserDto;
 import com.vut.fit.pis2020.entity.Product;
 import com.vut.fit.pis2020.entity.ProductPhoto;
 import com.vut.fit.pis2020.service.ProductService;
@@ -27,7 +26,7 @@ public class AdminProductController {
     private ProductDtoConverter productDtoConverter;
 
     @Autowired
-    private JsonObjectMapper jsonObjectMapper;
+    private ObjectMapper jsonObjectMapper;
 
     @GetMapping("/api/admin/products")
     public List<ProductBasicDto> getAllProducts() {
