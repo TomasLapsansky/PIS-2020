@@ -1,9 +1,12 @@
 package com.vut.fit.pis2020.persistance;
 
+import com.vut.fit.pis2020.entity.Category;
 import com.vut.fit.pis2020.entity.ProductCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 public interface ProductCategoryRepository extends JpaRepository<ProductCategory, Long> {
 
@@ -15,4 +18,6 @@ public interface ProductCategoryRepository extends JpaRepository<ProductCategory
             @Param("productId") Long productId,
             @Param("categoryId") Long categoryId
     );
+
+    List<ProductCategory> findAllByCategory(Category category);
 }

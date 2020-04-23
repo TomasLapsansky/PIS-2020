@@ -1,11 +1,14 @@
 package com.vut.fit.pis2020.entity;
 
+import com.vut.fit.pis2020.converter.LocalDateTimeConverter;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -37,6 +40,14 @@ public class Product implements Serializable {
     @NotNull
     @Column(name = "available")
     private Boolean available;
+
+    @CreatedDate
+    @Column(name = "created", updatable = false)
+    @Convert(converter = LocalDateTimeConverter.class)
+    private LocalDateTime created;
+
+    @Column(name = "num_buys")
+    private Integer numBuys = 0;
 
     @OneToMany(mappedBy = "product")
     private List<StoreEntity> storeEntities;
@@ -161,5 +172,21 @@ public class Product implements Serializable {
 
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public Integer getNumBuys() {
+        return numBuys;
+    }
+
+    public void setNumBuys(Integer numBuys) {
+        this.numBuys = numBuys;
     }
 }

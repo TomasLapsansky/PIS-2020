@@ -12,6 +12,8 @@ public class ProductBasicDto {
 
     private Boolean available;
 
+    private ProductPhotoDto primaryPhoto;
+
     public Long getId() {
         return id;
     }
@@ -50,5 +52,13 @@ public class ProductBasicDto {
 
     public void setAvailable(Boolean available) {
         this.available = available;
+    }
+
+    public ProductPhotoDto getPrimaryPhoto() {
+        return primaryPhoto;
+    }
+
+    public void setPrimaryPhoto(ProductPhotoDto primaryPhoto) {
+        this.primaryPhoto = primaryPhoto;
     }
 }
