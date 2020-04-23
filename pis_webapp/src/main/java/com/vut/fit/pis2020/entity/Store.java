@@ -4,7 +4,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
@@ -24,7 +23,6 @@ public class Store implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Null
     @Size(max = 255)
     @Column(name = "location")
     private String location;

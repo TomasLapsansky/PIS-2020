@@ -25,6 +25,7 @@ public class ProductDtoConverter {
             product = new Product();
             product.setName(productDto.getName());
             product.setSpecification(productDto.getSpecification());
+            product.setDescription(productDto.getDescription());
             product.setPrice(productDto.getPrice());
             product.setAvailable(productDto.getAvailable());
         }

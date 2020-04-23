@@ -1,9 +1,12 @@
 package com.vut.fit.pis2020.controller.restcontroller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.vut.fit.pis2020.converter.JsonObjectMapper;
 import com.vut.fit.pis2020.converter.ProductDtoConverter;
 import com.vut.fit.pis2020.dto.ProductBasicDto;
 import com.vut.fit.pis2020.dto.ProductDto;
 import com.vut.fit.pis2020.dto.ProductPhotoDto;
+import com.vut.fit.pis2020.dto.UserDto;
 import com.vut.fit.pis2020.entity.Product;
 import com.vut.fit.pis2020.entity.ProductPhoto;
 import com.vut.fit.pis2020.service.ProductService;
@@ -22,6 +25,9 @@ public class AdminProductController {
 
     @Autowired
     private ProductDtoConverter productDtoConverter;
+
+    @Autowired
+    private JsonObjectMapper jsonObjectMapper;
 
     @GetMapping("/api/admin/products")
     public List<ProductBasicDto> getAllProducts() {
@@ -45,9 +51,11 @@ public class AdminProductController {
     }
 
     @PostMapping("/api/admin/products/create")
-    public HashMap<String, String> createProduct(@ModelAttribute("product") ProductDto productDto) {
+    public HashMap<String, String> createProduct(@RequestBody String productJSON) throws JsonProcessingException {
 
         HashMap<String, String> returnCode = new HashMap<>();
+
+        ProductDto productDto = jsonObjectMapper.readValue(productJSON, ProductDto.class);
 
         Product product = productDtoConverter.convertToProduct(productDto);
 
@@ -59,9 +67,11 @@ public class AdminProductController {
     }
 
     @PostMapping("/api/admin/products/update")
-    public HashMap<String, String> updateProduct(@ModelAttribute("product") ProductDto productDto) {
+    public HashMap<String, String> updateProduct(@RequestBody String productJSON) throws JsonProcessingException {
 
         HashMap<String, String> returnCode = new HashMap<>();
+
+        ProductDto productDto = jsonObjectMapper.readValue(productJSON, ProductDto.class);
 
         Product product = productService.findById(productDto.getId());
 
@@ -73,6 +83,7 @@ public class AdminProductController {
 
         product.setName(productDto.getName());
         product.setSpecification(productDto.getSpecification());
+        product.setDescription(productDto.getDescription());
         product.setPrice(productDto.getPrice());
         product.setAvailable(productDto.getAvailable());
 
@@ -109,9 +120,11 @@ public class AdminProductController {
     }
 
     @PostMapping("/api/admin/products/photos/create")
-    public HashMap<String, String> createProductPhoto(@ModelAttribute("photo") ProductPhotoDto productPhotoDto) {
+    public HashMap<String, String> createProductPhoto(@RequestBody String photoJSON) throws JsonProcessingException {
 
         HashMap<String, String> returnCode = new HashMap<>();
+
+        ProductPhotoDto productPhotoDto = jsonObjectMapper.readValue(photoJSON, ProductPhotoDto.class);
 
         if(productService.findById(productPhotoDto.getProductId()) == null) {
             returnCode.put("409", "There is no product with this id");
@@ -129,9 +142,11 @@ public class AdminProductController {
     }
 
     @PostMapping("/api/admin/products/photos/update")
-    public HashMap<String, String> updateProductPhoto(@ModelAttribute("photo") ProductPhotoDto productPhotoDto) {
+    public HashMap<String, String> updateProductPhoto(@RequestBody String photoJSON) throws JsonProcessingException {
 
         HashMap<String, String> returnCode = new HashMap<>();
+
+        ProductPhotoDto productPhotoDto = jsonObjectMapper.readValue(photoJSON, ProductPhotoDto.class);
 
         ProductPhoto productPhoto = productService.findPhotoById(productPhotoDto.getId());
 
@@ -161,8 +176,8 @@ public class AdminProductController {
         return returnCode;
     }
 
-    @PostMapping("/api/admin/products/photos/delete")
-    public HashMap<String, String> deleteProductPhoto(@ModelAttribute("photoId") Long photoId) {
+    @DeleteMapping("/api/admin/products/{productId}/photos/{photoId}/delete")
+    public HashMap<String, String> deleteProductPhoto(@PathVariable("productId") Long productId, @PathVariable("photoId") Long photoId) {
 
         HashMap<String, String> returnCode = new HashMap<>();
 

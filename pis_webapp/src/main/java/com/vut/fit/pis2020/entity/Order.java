@@ -6,7 +6,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -41,7 +40,6 @@ public class Order implements Serializable {
     @Column(name = "address")
     private String address;
 
-    @Null
     @Size(max = 1023)
     @Column(name = "note")
     private String note;
