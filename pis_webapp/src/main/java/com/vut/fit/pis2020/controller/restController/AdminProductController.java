@@ -6,6 +6,7 @@ import com.vut.fit.pis2020.converter.ProductDtoConverter;
 import com.vut.fit.pis2020.dto.ProductBasicDto;
 import com.vut.fit.pis2020.dto.ProductDto;
 import com.vut.fit.pis2020.dto.ProductPhotoDto;
+import com.vut.fit.pis2020.dto.UserDto;
 import com.vut.fit.pis2020.entity.Product;
 import com.vut.fit.pis2020.entity.ProductPhoto;
 import com.vut.fit.pis2020.service.ProductService;
@@ -24,9 +25,6 @@ public class AdminProductController {
 
     @Autowired
     private ProductDtoConverter productDtoConverter;
-
-    @Autowired
-    private ObjectMapper jsonObjectMapper;
 
     @GetMapping("/api/admin/products")
     public List<ProductBasicDto> getAllProducts() {
@@ -49,19 +47,41 @@ public class AdminProductController {
         return productDtoConverter.convertToProductDto(product);
     }
 
+    @DeleteMapping("/api/admin/products/{productId}")
+    public HashMap<String, Long> deleteProduct(@PathVariable("productId") Long productId) {
+
+        HashMap<String, Long> returnCode = new HashMap<>();
+
+        Product product = productService.findById(productId);
+
+        if (product == null) {
+            returnCode.put("responseCode", (long) 401);
+
+            return returnCode;
+        }
+
+        productService.delete(product);
+
+        returnCode.put("responseCode", (long) 201);
+
+        return returnCode;
+    }
+
     @PostMapping("/api/admin/products/create")
-    public HashMap<String, String> createProduct(@RequestBody String productJSON) throws JsonProcessingException {
+    @ResponseBody
+    public HashMap<String, Long> createProduct(@RequestBody String productJSON) throws JsonProcessingException {
 
-        HashMap<String, String> returnCode = new HashMap<>();
+        HashMap<String, Long> returnCode = new HashMap<>();
 
-        ProductDto productDto = jsonObjectMapper.readValue(productJSON, ProductDto.class);
+        ObjectMapper mapper = new ObjectMapper();
+        ProductDto productDto = mapper.readValue(productJSON, ProductDto.class);
 
         Product product = productDtoConverter.convertToProduct(productDto);
 
         product = productService.save(product);
 
-        returnCode.put("201", "Product created");
-        returnCode.put(product.getId().toString(), "ID"); /* Need for photo add */
+        returnCode.put("responseCode", (long) 201);
+        returnCode.put("id", product.getId()); /* Need for photo add */
 
         return returnCode;
     }
@@ -71,7 +91,8 @@ public class AdminProductController {
 
         HashMap<String, String> returnCode = new HashMap<>();
 
-        ProductDto productDto = jsonObjectMapper.readValue(productJSON, ProductDto.class);
+        ObjectMapper mapper = new ObjectMapper();
+        ProductDto productDto = mapper.readValue(productJSON, ProductDto.class);
 
         Product product = productService.findById(productDto.getId());
 
@@ -83,7 +104,6 @@ public class AdminProductController {
 
         product.setName(productDto.getName());
         product.setSpecification(productDto.getSpecification());
-        product.setDescription(productDto.getDescription());
         product.setPrice(productDto.getPrice());
         product.setAvailable(productDto.getAvailable());
 
@@ -124,7 +144,8 @@ public class AdminProductController {
 
         HashMap<String, String> returnCode = new HashMap<>();
 
-        ProductPhotoDto productPhotoDto = jsonObjectMapper.readValue(photoJSON, ProductPhotoDto.class);
+        ObjectMapper mapper = new ObjectMapper();
+        ProductPhotoDto productPhotoDto = mapper.readValue(photoJSON, ProductPhotoDto.class);
 
         if(productService.findById(productPhotoDto.getProductId()) == null) {
             returnCode.put("409", "There is no product with this id");
@@ -142,11 +163,9 @@ public class AdminProductController {
     }
 
     @PostMapping("/api/admin/products/photos/update")
-    public HashMap<String, String> updateProductPhoto(@RequestBody String photoJSON) throws JsonProcessingException {
+    public HashMap<String, String> updateProductPhoto(@ModelAttribute("photo") ProductPhotoDto productPhotoDto) {
 
         HashMap<String, String> returnCode = new HashMap<>();
-
-        ProductPhotoDto productPhotoDto = jsonObjectMapper.readValue(photoJSON, ProductPhotoDto.class);
 
         ProductPhoto productPhoto = productService.findPhotoById(productPhotoDto.getId());
 
@@ -176,8 +195,8 @@ public class AdminProductController {
         return returnCode;
     }
 
-    @DeleteMapping("/api/admin/products/{productId}/photos/{photoId}/delete")
-    public HashMap<String, String> deleteProductPhoto(@PathVariable("productId") Long productId, @PathVariable("photoId") Long photoId) {
+    @DeleteMapping("/api/admin/products/photos/{id}")
+    public HashMap<String, String> deleteProductPhoto(@PathVariable("id") Long photoId) {
 
         HashMap<String, String> returnCode = new HashMap<>();
 

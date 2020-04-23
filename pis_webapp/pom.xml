@@ -177,6 +177,15 @@
 						</configuration>
 					</execution>
 					<execution>
+						<id>npm install react-bootstrap bootstrap</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install react-bootstrap bootstrap</arguments>
+						</configuration>
+					</execution>
+					<execution>
 						<id>webpack build</id>
 						<goals>
 							<goal>webpack</goal>

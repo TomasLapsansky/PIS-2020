@@ -92,7 +92,7 @@ class AdminUserCreate extends React.Component {
         return(
             <div id="admin-user-create" className="admin">
                 <Sidebar activeItem={0}/>
-                <div className="admin-content user-index">
+                <div className="admin-content user-create">
                     <AdminSectionHeader pageTitle="Pridať používateľa" create={false} />
                     <UserForm  user={this.props.user}
                                handleChange={this.handleChange}
