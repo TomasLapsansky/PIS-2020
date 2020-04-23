@@ -1,5 +1,7 @@
 package com.vut.fit.pis2020.controller.restcontroller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.vut.fit.pis2020.converter.JsonObjectMapper;
 import com.vut.fit.pis2020.converter.RoleDtoConverter;
 import com.vut.fit.pis2020.dto.RoleDto;
 import com.vut.fit.pis2020.dto.UserRoleDto;
@@ -26,6 +28,9 @@ public class AdminRoleController {
     @Autowired
     private RoleDtoConverter roleDtoConverter;
 
+    @Autowired
+    private JsonObjectMapper jsonObjectMapper;
+
     @GetMapping("/api/admin/roles")
     public List<RoleDto> getAllRoles() {
 
@@ -47,9 +52,11 @@ public class AdminRoleController {
     }
 
     @PostMapping("/api/admin/roles/create")
-    public HashMap<String, String> createRole(@ModelAttribute("role") RoleDto roleDto) {
+    public HashMap<String, String> createRole(@RequestBody String roleJSON) throws JsonProcessingException {
 
         HashMap<String, String> returnCode = new HashMap<>();
+
+        RoleDto roleDto = jsonObjectMapper.readValue(roleJSON, RoleDto.class);
 
         if(roleService.findByName(roleDto.getName()) != null) {
             returnCode.put("409", "There is already a role with the name provided");
@@ -67,9 +74,11 @@ public class AdminRoleController {
     }
 
     @PostMapping("/api/admin/roles/update")
-    public HashMap<String, String> updateRole(@ModelAttribute("role") RoleDto roleDto) {
+    public HashMap<String, String> updateRole(@RequestBody String roleJSON) throws JsonProcessingException{
 
         HashMap<String, String> returnCode = new HashMap<>();
+
+        RoleDto roleDto = jsonObjectMapper.readValue(roleJSON, RoleDto.class);
 
         Role role = roleService.findById(roleDto.getId());
 
@@ -99,9 +108,11 @@ public class AdminRoleController {
     /* TODO privileges */
 
     @PostMapping("/api/admin/users/updaterole")
-    public HashMap<String, String> updateUserRole(@ModelAttribute("userrole") UserRoleDto userRoleDto) {
+    public HashMap<String, String> updateUserRole(@RequestBody String roleJSON) throws JsonProcessingException{
 
         HashMap<String, String> returnCode = new HashMap<>();
+
+        UserRoleDto userRoleDto = jsonObjectMapper.readValue(roleJSON, UserRoleDto.class);
 
         User user = userService.findById(userRoleDto.getUser_id());
         Role role = roleService.findById(userRoleDto.getRole_id());

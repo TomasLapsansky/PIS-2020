@@ -56055,7 +56055,7 @@ function (_React$Component) {
         autoComplete: "surname"
       }))), this.props.isCreate && react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_6__["FormGroup"], null, react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_6__["Label"], {
         "for": "password"
-      }, "Email"), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_6__["Input"], {
+      }, "Heslo"), react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_6__["Input"], {
         type: "password",
         name: "password",
         id: "password",
@@ -56122,7 +56122,7 @@ function (_React$Component) {
       }, "Save"), ' ', react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_6__["Button"], {
         color: "secondary",
         tag: react_router_dom__WEBPACK_IMPORTED_MODULE_7__["Link"],
-        to: "/admin/users/"
+        to: "/admin/users"
       }, "Cancel")));
     }
   }]);

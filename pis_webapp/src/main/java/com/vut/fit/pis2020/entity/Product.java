@@ -4,7 +4,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
@@ -24,7 +23,6 @@ public class Product implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Null
     @Column(name = "specification", columnDefinition = "TEXT")
     private String specification;
 
