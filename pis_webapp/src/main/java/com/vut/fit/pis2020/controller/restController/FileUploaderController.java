@@ -1,4 +1,4 @@
-package com.vut.fit.pis2020.controller.restcontroller;
+package com.vut.fit.pis2020.controller.restController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
