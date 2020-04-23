@@ -4,9 +4,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vut.fit.pis2020.converter.CategoryDtoConverter;
 import com.vut.fit.pis2020.dto.CategoryDto;
-import com.vut.fit.pis2020.dto.UserDto;
+import com.vut.fit.pis2020.dto.ProductCategoryDto;
 import com.vut.fit.pis2020.entity.Category;
+import com.vut.fit.pis2020.entity.ProductCategory;
 import com.vut.fit.pis2020.service.CategoryService;
+import com.vut.fit.pis2020.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,9 @@ public class AdminCategoryController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private ProductService productService;
 
     @Autowired
     private CategoryDtoConverter categoryDtoConverter;
@@ -102,7 +107,55 @@ public class AdminCategoryController {
 
         categoryService.save(category);
 
-        returnCode.put("201", "User updated");
+        returnCode.put("201", "Category updated");
+
+        return returnCode;
+    }
+
+    @PostMapping("/api/admin/categories/addproduct")
+    public HashMap<String, String> addProductToCategory(@RequestBody String productCategoryJSON) throws JsonProcessingException {
+
+        HashMap<String, String> returnCode = new HashMap<>();
+
+        ProductCategoryDto productCategoryDto = jsonObjectMapper.readValue(productCategoryJSON, ProductCategoryDto.class);
+
+        if(categoryService.findProductCategoryConnection(productCategoryDto.getProductId(), productCategoryDto.getCategoryId()) != null) {
+            returnCode.put("201", "Product is already added to category");
+
+            return returnCode;
+        }
+
+        ProductCategory productCategory = new ProductCategory();
+        productCategory.setProduct(productService.findById(productCategoryDto.getProductId()));
+        productCategory.setCategory(categoryService.findById(productCategoryDto.getCategoryId()));
+
+        categoryService.addProductToCategory(productCategory);
+
+        returnCode.put("201", "Product added to category");
+
+        return returnCode;
+    }
+
+    @DeleteMapping("/api/admin/categories/deleteproduct")
+    public HashMap<String, String> deleteProductFromCategory(@RequestBody String productCategoryJSON) throws JsonProcessingException {
+
+        HashMap<String, String> returnCode = new HashMap<>();
+
+        ProductCategoryDto productCategoryDto = jsonObjectMapper.readValue(productCategoryJSON, ProductCategoryDto.class);
+
+        Long productCategoryId = categoryService.findProductCategoryConnection(productCategoryDto.getProductId(), productCategoryDto.getCategoryId());
+
+        if(productCategoryId == null) {
+            returnCode.put("201", "Product is already deleted from category");
+
+            return returnCode;
+        }
+
+        ProductCategory productCategory = categoryService.getProductCategory(productCategoryId);
+
+        categoryService.removeProductFromCategory(productCategory);
+
+        returnCode.put("201", "Product removed from category");
 
         return returnCode;
     }

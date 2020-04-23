@@ -58,9 +58,10 @@ public class AdminProductController {
 
         Product product = productDtoConverter.convertToProduct(productDto);
 
-        productService.save(product);
+        product = productService.save(product);
 
         returnCode.put("201", "Product created");
+        returnCode.put(product.getId().toString(), "ID"); /* Need for photo add */
 
         return returnCode;
     }
