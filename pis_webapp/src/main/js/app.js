@@ -16,6 +16,8 @@ import AdminUserCreate from "./components/admin/user/AdminUserCreate";
 import AdminUserEdit from "./components/admin/user/AdminUserEdit";
 import AdminProductIndex from "./components/admin/product/AdminProductIndex";
 import AdminProductEdit from "./components/admin/product/AdminProductEdit";
+import LandingPage from "./components/frontend/LandingPage";
+import ProductDetail from "./components/frontend/ProductDetail";
 
 
 class App extends React.Component { // <1>
@@ -45,9 +47,10 @@ class App extends React.Component { // <1>
                         <Route path="/admin">
                             <AdminIndex/>
                         </Route>
+                        <Route exact path="/product/:id"
+                               render = {props => <ProductDetail {...props} /> } />
                         <Route exact path="/">
-                            <span>React is running correctly !</span>
-                            <Link to="/admin">Admin</Link>
+                            <LandingPage />
                         </Route>
                     </Switch>
                 </Router>

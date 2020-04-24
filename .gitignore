@@ -26,3 +26,7 @@ hs_err_pid*
 **/.idea
 **/node_modules
 **/target
+**static/built/
+**/assets/
+package-lock.json
+package.json

@@ -8,6 +8,7 @@ services:
     restart: always
     volumes:
       - ./pis_webapp/target/pis2020-1.0-SNAPSHOT.war:/usr/local/tomcat/webapps/ROOT.war
+      - ./pis_webapp/assets:/usr/local/tomcat/assets/
     command: catalina.sh run
     links:
       - db

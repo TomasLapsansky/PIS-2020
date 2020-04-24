@@ -1,4 +1,4 @@
-import {LOAD_PRODUCT_LIST, REMOVE_PRODUCT_FROM_LIST} from "../actionTypes";
+import {LOAD_PRODUCT_LIST, REMOVE_PRODUCT_FROM_LIST} from "../../actionTypes";
 
 const initialState = {
     products: []

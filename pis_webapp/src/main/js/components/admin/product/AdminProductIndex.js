@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from '../Sidebar';
 import AdminSectionHeader from '../partial/AdminSectionHeader';
 import {connect} from "react-redux";
-import {loadProductList, removeProductFromList} from "../../../redux/actions";
+import {loadProductList, removeProductFromList} from "../../../redux/actions/adminActions";
 import Badge from 'react-bootstrap/Badge';
 
 class AdminProductIndex extends React.Component {

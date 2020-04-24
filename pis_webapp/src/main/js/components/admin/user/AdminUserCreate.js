@@ -3,7 +3,7 @@ import Sidebar from '../Sidebar';
 import AdminSectionHeader from '../partial/AdminSectionHeader';
 import UserForm from "./partial/UserForm";
 import {connect} from "react-redux";
-import {updateUser} from "../../../redux/actions";
+import {updateUser} from "../../../redux/actions/adminActions";
 
 class AdminUserCreate extends React.Component {
 

@@ -1,12 +1,12 @@
-import { UPDATE_USER } from "../actionTypes";
+import {SET_ACTIVE_PRODUCT_IMAGE} from "../../actionTypes";
 
 const initialState = {
-  user: {}
+    image: {}
 };
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case UPDATE_USER:
+        case SET_ACTIVE_PRODUCT_IMAGE:
             return Object.assign({}, state, action.payload);
         default:
             return state;
