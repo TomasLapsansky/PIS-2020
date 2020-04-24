@@ -82,7 +82,7 @@ div.admin-content {
     .admin-content-list table tbody > tr:last-child td:first-child {
       border-bottom-left-radius: 8px; }
 
-#admin-user-index div.user-index {
+#admin-index div.admin-content {
   width: calc(100vw - 250px); }
 
 /*# sourceMappingURL=main.css.map */

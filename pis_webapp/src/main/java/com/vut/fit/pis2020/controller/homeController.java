@@ -24,4 +24,13 @@ public class homeController {
     @RequestMapping("/admin/users/edit/{id}")
     public String adminUsersEdit(@PathVariable String id) { return "index"; }
 
+    @RequestMapping("/admin/products")
+    public String adminProductsIndex() { return "index"; }
+
+    @RequestMapping("/admin/products/create")
+    public String adminProductsCreate() { return "index"; }
+
+    @RequestMapping("/admin/products/edit/{id}")
+    public String adminProductsEdit(@PathVariable String id) { return "index"; }
+
 }

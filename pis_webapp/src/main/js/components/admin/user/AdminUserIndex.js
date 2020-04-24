@@ -37,7 +37,7 @@ class AdminUserIndex extends React.Component {
 
     render() {
         return(
-            <div id="admin-user-index" className="admin">
+            <div id="admin-index" className="admin">
                 <Sidebar activeItem={0}/>
                 <div className="admin-content user-index">
                     <AdminSectionHeader pageTitle="Používatelia" create={true} />
