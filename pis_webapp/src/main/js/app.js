@@ -18,6 +18,13 @@ import AdminProductIndex from "./components/admin/product/AdminProductIndex";
 import AdminProductEdit from "./components/admin/product/AdminProductEdit";
 import LandingPage from "./components/frontend/LandingPage";
 import ProductDetail from "./components/frontend/ProductDetail";
+import Cart from "./components/frontend/Cart";
+import Checkout from "./components/frontend/Checkout";
+import OrderSummary from "./components/frontend/OrderSummary";
+import CategoryProductList from "./components/frontend/CategoryProductList";
+import AdminCategoryIndex from "./components/admin/category/AdminCategoryIndex";
+import AdminCategoryEdit from "./components/admin/category/AdminCategoryEdit";
+import AdminCategoryCreate from "./components/admin/category/AdminCategoryCreate";
 
 
 class App extends React.Component { // <1>
@@ -28,6 +35,14 @@ class App extends React.Component { // <1>
             <Provider store={store}>
                 <Router>
                     <Switch>
+                        <Route exact path="/admin/categories/edit/:id"
+                               render = {props => <AdminCategoryEdit {...props} /> } />
+                        <Route exact path="/admin/categories/create">
+                            <AdminCategoryCreate />
+                        </Route>
+                        <Route exact path="/admin/categories/">
+                            <AdminCategoryIndex />
+                        </Route>
                         <Route exact path="/admin/users/edit/:id"
                                render = {props => <AdminUserEdit {...props} /> } />
                        <Route exact path="/admin/users/create/">
@@ -49,6 +64,16 @@ class App extends React.Component { // <1>
                         </Route>
                         <Route exact path="/product/:id"
                                render = {props => <ProductDetail {...props} /> } />
+                        <Route exact path="/checkout">
+                            <Checkout />
+                        </Route>
+                        <Route exact path="/order-detail/:id"
+                               render = {props => <OrderSummary {...props} /> } />
+                        <Route exact path="/category/:id"
+                               render = {props => <CategoryProductList {...props} /> } />
+                       <Route exact path="/cart">
+                            <Cart/>
+                        </Route>
                         <Route exact path="/">
                             <LandingPage />
                         </Route>

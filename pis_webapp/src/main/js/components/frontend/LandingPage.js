@@ -3,8 +3,7 @@ import Sidebar from "./partial/Sidebar";
 import Header from "./partial/Header";
 import {connect} from "react-redux";
 import {loadProductList} from "../../redux/actions/adminActions";
-import Badge from "react-bootstrap/Badge";
-import {Link} from "react-router-dom";
+import ProductList from "./partial/ProductList";
 
 class LandingPage extends React.Component {
 
@@ -24,20 +23,7 @@ class LandingPage extends React.Component {
                     <div id="content-holder">
                         <Sidebar />
                         <div id="landing-page" className="content-area">
-                            <div className="product-list">
-                                {this.props.productList.map((product) => {
-                                    return(
-                                        <div className="product-box" key={product.id}>
-                                            {product.primaryPhoto && <div className="img-holder"><img src={product.primaryPhoto.file} alt=""/></div>}
-                                            {!product.primaryPhoto && <div className="img-placeholder"/>}
-                                            <Link to={"/product/"+product.id}>
-                                                {product.name}
-                                            </Link>
-                                            <span>{product.price}</span>
-                                        </div>
-                                    )
-                                })}
-                            </div>
+                            <ProductList />
                         </div>
                     </div>
                 </div>

@@ -3,14 +3,15 @@ import Header from "./partial/Header";
 import Sidebar from "./partial/Sidebar";
 import {connect} from "react-redux";
 import {clearImages, updateImage, updateProduct} from "../../redux/actions/adminActions";
-import {setActiveProductImage} from "../../redux/actions/frontendActions";
-import Button from 'react-bootstrap/Button'
+import {addCartItem, clearCart, setActiveProductImage} from "../../redux/actions/frontendActions";
+import Button from 'react-bootstrap/Button';
 
 class ProductDetail extends React.Component {
 
     constructor(props) {
         super(props);
         this.changePhoto = this.changePhoto.bind(this);
+        this.addToCartHandler = this.addToCartHandler.bind(this);
     }
 
     static mapStateToProps = state => {
@@ -37,6 +38,7 @@ class ProductDetail extends React.Component {
 
     componentWillUnmount() {
         this.props.clearImages();
+        this.props.clearCart();
     }
 
     getImageIdxById(id) {
@@ -70,9 +72,26 @@ class ProductDetail extends React.Component {
 
     }
 
-    addToCartHandler(event) {
-        console.log("add to cart");
-        console.log(event);
+    async addToCartHandler(event) {
+        event.preventDefault();
+        let cartItem = Object.assign({}, {
+            amount: 1,
+            productId: this.props.product.id,
+            userId: 2
+        });
+        await fetch('/api/cartitems/add', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(cartItem),
+        }).then(
+            response => {
+                console.log(response);
+            }
+        );
+
     }
 
     render() {
@@ -84,21 +103,21 @@ class ProductDetail extends React.Component {
                         <Sidebar />
                         <div id="product-detail" className="content-area">
                             <div className="row no-gutters">
-                                <div className="col-md-6">
+                                <div className="col-md-6 image-section">
                                     <div className="image-holder">
                                         <i onClick={ (e) => this.changePhoto(e, 'left')} className="fas fa-chevron-left"/>
                                         {this.props.activeImage && <img src={this.props.activeImage.file} alt={this.props.activeImage.name}/>}
                                         <i onClick={ (e) => this.changePhoto(e, 'right')} className="fas fa-chevron-right"/>
                                     </div>
                                 </div>
-                                <div className="col-md-6">
+                                <div className="col-md-6 description-section">
                                     <h1>{this.props.product.name}</h1>
                                     <span className="price">{this.props.product.price}</span>
                                     <p className="description">{this.props.product.description}</p>
                                     <Button onClick={this.addToCartHandler} variant="success"><i className="fas fa-cart-plus"/> Vložiť do košíka</Button>
                                 </div>
                             </div>
-                            <div>
+                            <div className="specification-section">
                                 <span>Špecifikácie:</span>
                                 <p>{this.props.product.specification}</p>
                             </div>
@@ -114,5 +133,5 @@ class ProductDetail extends React.Component {
 
 export default connect(
     ProductDetail.mapStateToProps,
-    { updateImage, updateProduct, setActiveProductImage, clearImages }
+    { updateImage, updateProduct, setActiveProductImage, clearImages, addCartItem, clearCart }
 )(ProductDetail);

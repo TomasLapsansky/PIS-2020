@@ -3,7 +3,13 @@ import {Button, FormGroup, Input, Label} from "reactstrap";
 import {Link} from "react-router-dom";
 import Form from 'react-bootstrap/Form'
 import {connect} from "react-redux";
-import {deleteImage, updateImage, updateProduct} from "../../../../redux/actions/adminActions";
+import {
+    deleteImage,
+    loadCategoryList,
+    updateCategory,
+    updateImage,
+    updateProduct
+} from "../../../../redux/actions/adminActions";
 
 class ProductForm extends React.Component {
 
@@ -16,8 +22,16 @@ class ProductForm extends React.Component {
     static mapStateToProps = state => {
         return {
             images: state.images.images,
-            product: state.product.product
+            product: state.product.product,
+            categoryList: state.categoryList.categories,
+            category: state.category.category
         }
+    }
+
+    async componentDidMount() {
+        const response = await fetch('/api/admin/categories/');
+        const body = await response.json();
+        this.props.loadCategoryList(body);
     }
 
     handleChange(event) {
@@ -43,6 +57,10 @@ class ProductForm extends React.Component {
             case 'available':
                 product.available = event.target.checked;
                 this.props.updateProduct(product);
+                break;
+            case 'categoryId':
+                const category = Object.assign({}, {id: event.target.value});
+                this.props.updateCategory(category);
                 break;
             default:
                 break;
@@ -115,6 +133,21 @@ class ProductForm extends React.Component {
                         onChange={ (e) => {this.handleChange(e)}}
                     />
                 </Form.Group>
+                <Form.Group>
+                    <Label for="categoryId">Kategória</Label>
+                    <Form.Control name="categoryId"
+                                  id="categoryId"
+                                  onChange={ (e) => {this.handleChange(e)}}
+                                  as="select"
+                                  value={this.props.category.id || ''}>
+                        <option key="-1" value="-1">Žiadna</option>
+                        {this.props.categoryList.map( category => {
+                            return(
+                                <option key={category.id} value={category.id}>{category.name}</option>
+                            )
+                        })}
+                    </Form.Control>
+                </Form.Group>
                 <div className="row no-gutters">
                     {this.props.images.map((image, i) => {
                         return (
@@ -141,5 +174,5 @@ class ProductForm extends React.Component {
 
 export default connect(
     ProductForm.mapStateToProps,
-    { updateProduct, updateImage, deleteImage }
+    { updateProduct, updateImage, deleteImage, loadCategoryList, updateCategory }
 )(ProductForm);

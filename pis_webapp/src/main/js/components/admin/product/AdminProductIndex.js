@@ -70,8 +70,8 @@ class AdminProductIndex extends React.Component {
                                             {!product.available && <Badge variant="secondary">nedostupný</Badge>}
                                         </td>
                                         <td>
-                                            <a href={'admin/products/edit/'+product.id}><i className="fas fa-edit"></i></a>
-                                            <a onClick={(e) => {this.handleDelete(e, product.id)}}><i className="fas fa-trash-alt"></i></a>
+                                            <a href={'admin/products/edit/'+product.id}><i className="fas fa-edit"/></a>
+                                            <a onClick={(e) => {this.handleDelete(e, product.id)}}><i className="fas fa-trash-alt"/></a>
                                         </td>
                                     </tr>
                                 )

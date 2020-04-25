@@ -16,7 +16,8 @@ class AdminProductEdit extends React.Component {
 
     static mapStateToProps = state => {
         return {
-            product: state.product.product
+            product: state.product.product,
+            category: state.category.category
         }
     }
 
@@ -78,6 +79,32 @@ class AdminProductEdit extends React.Component {
 
         this.filesToUpload=[];
 
+        let url = '/api/admin/categories/addproduct';
+        let method = 'POST';
+
+        if (this.props.category.id == -1) {
+            method = 'DELETE';
+            url = '/api/admin/categories/deleteproduct';
+        }
+
+        const categoryConnector = Object.assign({}, {
+            categoryId: this.props.category.id,
+            productId: this.props.product.id
+        });
+
+        fetch(url, {
+            method: method,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(categoryConnector)
+        }).then(
+            response => {
+                console.log(response)}
+        );
+
+
         this.forceUpdate();
     }
 
@@ -106,10 +133,9 @@ class AdminProductEdit extends React.Component {
                 <Sidebar activeItem={1}/>
                 <div className="admin-content product-create">
                     <AdminSectionHeader pageTitle="Upraviť produkt" create={false} />
-                    <ProductForm
-                               filesToUpload={this.filesToUpload}
-                               handleSubmit={this.handleSubmit}
-                               onFileChangeHandler={this.onFileChangeHandler}/>
+                    <ProductForm filesToUpload={this.filesToUpload}
+                                 handleSubmit={this.handleSubmit}
+                                 onFileChangeHandler={this.onFileChangeHandler}/>
                 </div>
             </div>
         );
