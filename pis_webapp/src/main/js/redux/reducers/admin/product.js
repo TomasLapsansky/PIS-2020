@@ -1,12 +1,12 @@
-import {LOAD_USER_LIST} from "../actionTypes";
+import {UPDATE_IMAGE, UPDATE_PRODUCT} from "../../actionTypes";
 
 const initialState = {
-    users: []
+  product: {},
 };
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case LOAD_USER_LIST:
+        case UPDATE_PRODUCT:
             return Object.assign({}, state, action.payload);
         default:
             return state;

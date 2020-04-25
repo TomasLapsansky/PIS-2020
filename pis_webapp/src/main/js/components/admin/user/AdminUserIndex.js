@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from '../Sidebar';
 import AdminSectionHeader from '../partial/AdminSectionHeader';
 import {connect} from "react-redux";
-import {loadUserList} from "../../../redux/actions";
+import {loadUserList} from "../../../redux/actions/adminActions";
 
 class AdminUserIndex extends React.Component {
 

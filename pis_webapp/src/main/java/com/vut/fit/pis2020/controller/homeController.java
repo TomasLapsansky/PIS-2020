@@ -33,4 +33,7 @@ public class homeController {
     @RequestMapping("/admin/products/edit/{id}")
     public String adminProductsEdit(@PathVariable String id) { return "index"; }
 
+    @RequestMapping("/product/{id}")
+    public String frontendProductDetail(@PathVariable String id) { return "index"; }
+
 }

@@ -6,7 +6,7 @@ import {
     UPDATE_IMAGE,
     UPDATE_PRODUCT,
     UPDATE_USER
-} from "./actionTypes";
+} from "../actionTypes";
 
 export const loadUserList = userArray => ({
     type: LOAD_USER_LIST,

@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from '../Sidebar';
 import AdminSectionHeader from '../partial/AdminSectionHeader';
 import {connect} from "react-redux";
-import {clearImages, updateImage, updateProduct} from "../../../redux/actions";
+import {clearImages, updateImage, updateProduct} from "../../../redux/actions/adminActions";
 import ProductForm from "./partial/ProductForm";
 
 
@@ -76,11 +76,14 @@ class AdminProductEdit extends React.Component {
 
         });
 
+        this.filesToUpload=[];
+
         this.forceUpdate();
     }
 
     async componentDidMount() {
         // TODO handle fetch error
+        this.filesToUpload = [];
         const response = await fetch('/api/admin/products/'+this.props.match.params.id);
         const body = await response.json();
         this.props.updateProduct(body);
@@ -90,6 +93,12 @@ class AdminProductEdit extends React.Component {
             this.props.updateImage(image);
         });
     }
+
+    componentWillUnmount() {
+        this.props.clearImages();
+        this.filesToUpload = [];
+    }
+
 
     render() {
         return(

@@ -3,7 +3,7 @@ import {Button, FormGroup, Input, Label} from "reactstrap";
 import {Link} from "react-router-dom";
 import Form from 'react-bootstrap/Form'
 import {connect} from "react-redux";
-import {deleteImage, updateImage, updateProduct} from "../../../../redux/actions";
+import {deleteImage, updateImage, updateProduct} from "../../../../redux/actions/adminActions";
 
 class ProductForm extends React.Component {
 

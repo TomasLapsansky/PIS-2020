@@ -1,4 +1,4 @@
-import {CLEAR_IMAGES, DELETE_IMAGE, UPDATE_IMAGE} from "../actionTypes";
+import {CLEAR_IMAGES, DELETE_IMAGE, UPDATE_IMAGE} from "../../actionTypes";
 
 const initialState = {
   images: []

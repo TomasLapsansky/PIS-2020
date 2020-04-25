@@ -1,12 +1,12 @@
-import {UPDATE_IMAGE, UPDATE_PRODUCT} from "../actionTypes";
+import { SET_ADMIN_MENU_ACTIVE} from "../../actionTypes";
 
 const initialState = {
-  product: {},
+    adminMenuActive: -1
 };
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case UPDATE_PRODUCT:
+        case SET_ADMIN_MENU_ACTIVE:
             return Object.assign({}, state, action.payload);
         default:
             return state;

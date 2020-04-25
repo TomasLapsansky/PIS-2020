@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import { setactiveItem } from "../../redux/actions";
+import { setactiveItem } from "../../redux/actions/adminActions";
 import {connect} from "react-redux";
 //import logo from "../../../resources/static/img/logo.png";
 

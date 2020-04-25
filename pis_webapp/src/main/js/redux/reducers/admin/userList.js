@@ -1,12 +1,12 @@
-import { SET_ADMIN_MENU_ACTIVE} from "../actionTypes";
+import {LOAD_USER_LIST} from "../../actionTypes";
 
 const initialState = {
-    adminMenuActive: -1
+    users: []
 };
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case SET_ADMIN_MENU_ACTIVE:
+        case LOAD_USER_LIST:
             return Object.assign({}, state, action.payload);
         default:
             return state;

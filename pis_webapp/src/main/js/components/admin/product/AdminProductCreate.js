@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from '../Sidebar';
 import AdminSectionHeader from '../partial/AdminSectionHeader';
 import {connect} from "react-redux";
-import {updateImage, updateProduct} from "../../../redux/actions";
+import {clearImages, updateImage, updateProduct} from "../../../redux/actions/adminActions";
 import ProductForm from "./partial/ProductForm";
 
 class AdminProductCreate extends React.Component {
@@ -87,6 +87,13 @@ class AdminProductCreate extends React.Component {
             });
 
         });
+
+        this.filesToUpload = [];
+    }
+
+    componentWillUnmount() {
+        this.props.clearImages();
+        this.filesToUpload = [];
     }
 
     render() {
@@ -106,5 +113,5 @@ class AdminProductCreate extends React.Component {
 
 export default connect(
     AdminProductCreate.mapStateToProps,
-    { updateProduct, updateImage }
+    { updateProduct, updateImage, clearImages }
 )(AdminProductCreate);
