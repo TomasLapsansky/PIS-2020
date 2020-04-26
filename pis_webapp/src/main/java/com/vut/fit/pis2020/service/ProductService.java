@@ -89,4 +89,22 @@ public class ProductService {
         // TODO
         return null;
     }
+
+    public List<Product> findNewest() {
+        List<Product> products = productRepository.findAllByOrderByCreatedDesc();
+        int cnt = 8;
+        List<Product> returnProducts = new ArrayList<>();
+
+        for (Product product: products) {
+            if(product.getAvailable()) {
+                returnProducts.add(product);
+                cnt--;
+            }
+            if(cnt == 0) {
+                break;
+            }
+        }
+
+        return returnProducts;
+    }
 }
