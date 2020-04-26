@@ -19,7 +19,11 @@ public class CategoryDtoConverter {
             category = new Category();
             category.setName(categoryDto.getName());
             category.setDescription(categoryDto.getDescription());
-            category.setParentCategory(categoryService.findById(categoryDto.getParentCategoryId()));
+            if(categoryDto.getParentCategoryId() == null) {
+                category.setParentCategory(null);
+            } else {
+                category.setParentCategory(categoryService.findById(categoryDto.getParentCategoryId()));
+            }
         }
 
         return category;
