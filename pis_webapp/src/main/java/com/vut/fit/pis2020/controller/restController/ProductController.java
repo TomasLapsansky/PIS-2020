@@ -68,4 +68,18 @@ public class ProductController {
 
         return productBasicDtos;
     }
+
+    @GetMapping("/api/products/new")
+    public List<ProductBasicDto> getNewestProducts() {
+
+        List<ProductBasicDto> productBasicDtos = new ArrayList<>();
+
+        List<Product> newestProducts = productService.findNewest();
+
+        for (Product product: newestProducts) {
+            productBasicDtos.add(productDtoConverter.convertToProductBasicDto(product));
+        }
+
+        return productBasicDtos;
+    }
 }

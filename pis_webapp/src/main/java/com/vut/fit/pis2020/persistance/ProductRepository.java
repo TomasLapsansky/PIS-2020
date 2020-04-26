@@ -10,4 +10,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findAllByAvailableTrue();
 
     Product findByIdAndAvailableTrue(Long id);
+
+    List<Product> findAllByOrderByCreatedDesc();
 }
