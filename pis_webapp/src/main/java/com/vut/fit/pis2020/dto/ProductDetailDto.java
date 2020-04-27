@@ -1,5 +1,7 @@
 package com.vut.fit.pis2020.dto;
 
+import com.vut.fit.pis2020.helper.Pair;
+
 import java.util.List;
 
 public class ProductDetailDto {
@@ -23,6 +25,8 @@ public class ProductDetailDto {
     private Boolean available;
 
     private List<ProductPhotoDto> photos;
+
+    private List<Pair<String, StoreDto>> storesCapacity;
 
     public Long getId() {
         return id;
@@ -102,5 +106,13 @@ public class ProductDetailDto {
 
     public void setPhotos(List<ProductPhotoDto> photos) {
         this.photos = photos;
+    }
+
+    public List<Pair<String, StoreDto>> getStoresCapacity() {
+        return storesCapacity;
+    }
+
+    public void setStoresCapacity(List<Pair<String, StoreDto>> storesCapacity) {
+        this.storesCapacity = storesCapacity;
     }
 }
