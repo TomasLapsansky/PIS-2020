@@ -1,8 +1,8 @@
 import {
     CLEAR_IMAGES,
-    DELETE_IMAGE,
+    DELETE_IMAGE, LOAD_CATEGORY_LIST,
     LOAD_PRODUCT_LIST,
-    LOAD_USER_LIST, REMOVE_PRODUCT_FROM_LIST,
+    LOAD_USER_LIST, REMOVE_PRODUCT_FROM_LIST, UPDATE_CATEGORY,
     UPDATE_IMAGE,
     UPDATE_PRODUCT,
     UPDATE_USER
@@ -55,4 +55,18 @@ export const deleteImage = id => ({
 
 export const clearImages = () => ({
     type: CLEAR_IMAGES,
+});
+
+export const loadCategoryList = categoryList => ({
+    type: LOAD_CATEGORY_LIST,
+    payload: {
+        categories: categoryList
+    }
+});
+
+export const updateCategory = category => ({
+    type: UPDATE_CATEGORY,
+    payload: {
+        category: category
+    }
 });

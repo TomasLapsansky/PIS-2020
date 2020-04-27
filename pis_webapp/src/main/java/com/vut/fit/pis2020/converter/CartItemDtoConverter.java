@@ -30,7 +30,7 @@ public class CartItemDtoConverter {
         if(cartItemDto != null) {
             cartItem = new CartItem();
             cartItem.setProduct(productService.findById(cartItemDto.getProductId()));
-            cartItem.setUser(userService.findById(cartItemDto.getId()));
+            cartItem.setUser(userService.findById(cartItemDto.getUserId()));
             cartItem.setAmount(cartItemDto.getAmount());
         }
 

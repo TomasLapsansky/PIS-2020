@@ -1,4 +1,11 @@
-import {LOAD_CATEGORIES, SET_ACTIVE_PRODUCT_IMAGE} from "../actionTypes";
+import {
+    ADD_CART_ITEM,
+    CLEAR_CART,
+    CLEAR_ORDER,
+    CREATE_ORDER,
+    LOAD_CATEGORIES, REMOVE_CART_ITEM,
+    SET_ACTIVE_PRODUCT_IMAGE
+} from "../actionTypes";
 
 export const loadCategories = categoryArray => ({
     type: LOAD_CATEGORIES,
@@ -13,4 +20,32 @@ export const setActiveProductImage = image => ({
         image: image
     }
 });
+
+export const addCartItem = cartItem => ({
+   type: ADD_CART_ITEM,
+   payload: {
+       cartItem: cartItem
+   }
+});
+
+export const removeCartItem = id => ({
+    type: REMOVE_CART_ITEM,
+    id: id
+});
+
+export const clearCart = () => ({
+    type: CLEAR_CART
+});
+
+export const createOrder = order => ({
+   type: CREATE_ORDER,
+   payload: {
+       order: order
+   }
+});
+
+export const clearOrder = () => ({
+   type: CLEAR_ORDER
+});
+
 

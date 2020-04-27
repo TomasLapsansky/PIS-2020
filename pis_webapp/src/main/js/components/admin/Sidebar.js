@@ -1,9 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import { setactiveItem } from "../../redux/actions/adminActions";
 import {connect} from "react-redux";
-//import logo from "../../../resources/static/img/logo.png";
-
 
 class Sidebar extends React.Component {
 
@@ -12,6 +9,9 @@ class Sidebar extends React.Component {
     render() {
         return(
             <aside>
+                <Link to="/admin">
+                    <img src="/data/logo.png" alt="shop-logo"/>
+                </Link>
                 <ul>
                     <li className={(this.props.activeItem === 0) ? 'active' : ''}>
                         <Link to="/admin/users">Používatelia</Link>
@@ -37,5 +37,5 @@ class Sidebar extends React.Component {
 
 export default connect(
     Sidebar.mapStateToProps,
-    { setactiveItem }
+    null
 )(Sidebar);

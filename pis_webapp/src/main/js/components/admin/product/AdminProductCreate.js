@@ -23,7 +23,8 @@ class AdminProductCreate extends React.Component {
 
     static mapStateToProps = state => {
         return {
-            product: state.product.product
+            product: state.product.product,
+            category: state.category.category,
         }
     }
 
@@ -89,6 +90,28 @@ class AdminProductCreate extends React.Component {
         });
 
         this.filesToUpload = [];
+
+        if (this.props.category.id != -1) {
+
+            const categoryConnector = Object.assign({}, {
+                categoryId: this.props.category.id,
+                productId: this.props.product.id
+            });
+
+            fetch('/api/admin/categories/addproduct', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(categoryConnector)
+            }).then(
+                response => {
+                    console.log(response)}
+            );
+
+        }
+
     }
 
     componentWillUnmount() {

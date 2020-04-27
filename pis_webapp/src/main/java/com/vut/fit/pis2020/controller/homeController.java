@@ -33,7 +33,28 @@ public class homeController {
     @RequestMapping("/admin/products/edit/{id}")
     public String adminProductsEdit(@PathVariable String id) { return "index"; }
 
+    @RequestMapping("/admin/categories")
+    public String adminCategoryIndex() { return "index"; }
+
+    @RequestMapping("/admin/categories/create")
+    public String adminCategoryCreate() { return "index"; }
+
+    @RequestMapping("/admin/categories/edit/{id}")
+    public String adminCategoryEdit(@PathVariable String id) { return "index"; }
+
     @RequestMapping("/product/{id}")
     public String frontendProductDetail(@PathVariable String id) { return "index"; }
+
+    @RequestMapping("/cart")
+    public String frontendCart() { return "index"; }
+
+    @RequestMapping("/checkout")
+    public String frontendCheckout() { return "index"; }
+
+    @RequestMapping("/order-detail/{id}")
+    public String frontendCheckout(@PathVariable String id) { return "index"; }
+
+    @RequestMapping("/category/{id}")
+    public String frontendCategoryProducts(@PathVariable String id) { return "index"; }
 
 }

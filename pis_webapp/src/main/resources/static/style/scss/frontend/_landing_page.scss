@@ -1,39 +1,4 @@
 #landing-page {
 
-  div.product-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-  }
-
-  div.product-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid black;
-    max-width: 250px;
-    width: 100%;
-    padding: 20px;
-
-    div.img-holder {
-      display: flex;
-      width: 210px;
-      height: 210px;
-      justify-content: center;
-      align-items: center;
-    }
-
-    img {
-      max-width: 210px;
-      max-height: 210px;
-    }
-
-    div.img-placeholder {
-      width: 210px;
-      height: 210px;
-      background: #e0e0e0;
-    }
-
-  }
 
 }

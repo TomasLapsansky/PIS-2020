@@ -14,5 +14,9 @@ body {
   flex-direction: column;
 }
 
+aside a img {
+  max-width: 100%;
+}
+
 @import "admin/index";
 @import "frontend/frontend";
