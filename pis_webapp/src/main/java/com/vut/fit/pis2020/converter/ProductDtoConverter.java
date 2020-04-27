@@ -1,12 +1,13 @@
 package com.vut.fit.pis2020.converter;
 
-import com.vut.fit.pis2020.dto.ProductBasicDto;
-import com.vut.fit.pis2020.dto.ProductDetailDto;
-import com.vut.fit.pis2020.dto.ProductDto;
-import com.vut.fit.pis2020.dto.ProductPhotoDto;
+import com.vut.fit.pis2020.dto.*;
 import com.vut.fit.pis2020.entity.Product;
 import com.vut.fit.pis2020.entity.ProductPhoto;
+import com.vut.fit.pis2020.entity.Store;
+import com.vut.fit.pis2020.entity.StoreEntity;
+import com.vut.fit.pis2020.helper.Pair;
 import com.vut.fit.pis2020.service.ProductService;
+import com.vut.fit.pis2020.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +18,13 @@ import java.util.List;
 public class ProductDtoConverter {
 
     @Autowired
-    ProductService productService;
+    private ProductService productService;
+
+    @Autowired
+    private StoreService storeService;
+
+    @Autowired
+    private StoreDtoConverter storeDtoConverter;
 
     public Product convertToProduct(ProductDto productDto) {
         Product product = null;
@@ -83,6 +90,31 @@ public class ProductDtoConverter {
                 productPhotosDto.add(convertToProductPhotoDto(productPhoto));
             }
             productDetailDto.setPhotos(productPhotosDto);
+
+            /* TODO? Duplicity */
+            List<Pair<String, StoreDto>> productStoresCapacity = new ArrayList<>();
+
+            List<StoreEntity> storeEntities = storeService.findAllStoreEntitiesByProduct(product);
+            List<Store> stores = storeService.findAll();
+
+            /* Every store has to has an entity */
+            for (Store store: stores) {
+                boolean found = false;
+
+                for(StoreEntity storeEntity: storeEntities) {
+                    if(store == storeEntity.getStore()) {
+                        productStoresCapacity.add(new Pair<>(Integer.toString(storeEntity.getAmount()), storeDtoConverter.convertToStoreDto(store)));
+                        found = true;
+                        break;
+                    }
+                }
+                if(!found) {
+                    productStoresCapacity.add(new Pair<>("0", storeDtoConverter.convertToStoreDto(store)));
+                }
+            }
+            /* End */
+
+            productDetailDto.setStoresCapacity(productStoresCapacity);
         }
 
         return productDetailDto;
