@@ -57,4 +57,7 @@ public class homeController {
     @RequestMapping("/category/{id}")
     public String frontendCategoryProducts(@PathVariable String id) { return "index"; }
 
+    @RequestMapping("/login")
+    public String frontendLogin() { return "index"; }
+
 }

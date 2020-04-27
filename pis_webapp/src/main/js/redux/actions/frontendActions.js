@@ -4,7 +4,7 @@ import {
     CLEAR_ORDER,
     CREATE_ORDER,
     LOAD_CATEGORIES, REMOVE_CART_ITEM,
-    SET_ACTIVE_PRODUCT_IMAGE
+    SET_ACTIVE_PRODUCT_IMAGE, UPDATE_LOGIN_USER
 } from "../actionTypes";
 
 export const loadCategories = categoryArray => ({
@@ -48,4 +48,10 @@ export const clearOrder = () => ({
    type: CLEAR_ORDER
 });
 
+export const updateLoginUser = user => ({
+    type: UPDATE_LOGIN_USER,
+    payload: {
+        user: user
+    }
+});
 

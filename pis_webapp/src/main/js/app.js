@@ -25,6 +25,7 @@ import CategoryProductList from "./components/frontend/CategoryProductList";
 import AdminCategoryIndex from "./components/admin/category/AdminCategoryIndex";
 import AdminCategoryEdit from "./components/admin/category/AdminCategoryEdit";
 import AdminCategoryCreate from "./components/admin/category/AdminCategoryCreate";
+import LoginPage from "./components/frontend/LoginPage";
 
 
 class App extends React.Component { // <1>
@@ -73,6 +74,9 @@ class App extends React.Component { // <1>
                                render = {props => <CategoryProductList {...props} /> } />
                        <Route exact path="/cart">
                             <Cart/>
+                        </Route>
+                        <Route exact path="/login">
+                            <LoginPage />
                         </Route>
                         <Route exact path="/">
                             <LandingPage />

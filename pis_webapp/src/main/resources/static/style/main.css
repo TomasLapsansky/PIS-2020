@@ -250,4 +250,10 @@ div.product-box {
     margin: 0;
     font-size: 18px; }
 
+#login-page {
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  width: 100%; }
+
 /*# sourceMappingURL=main.css.map */
