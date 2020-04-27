@@ -1,6 +1,7 @@
 package com.vut.fit.pis2020.service;
 
 import com.vut.fit.pis2020.entity.Category;
+import com.vut.fit.pis2020.entity.Product;
 import com.vut.fit.pis2020.entity.ProductCategory;
 import com.vut.fit.pis2020.persistance.CategoryRepository;
 import com.vut.fit.pis2020.persistance.ProductCategoryRepository;
@@ -34,8 +35,8 @@ public class CategoryService {
         categoryRepository.delete(category);
     }
 
-    public Long findProductCategoryConnection(Long productId, Long categoryId) {
-        return productCategoryRepository.findProductCategoryConnection(productId, categoryId);
+    public ProductCategory findProductCategoryConnection(Product product, Category category) {
+        return productCategoryRepository.findByProductAndCategory(product, category);
     }
 
     public List<Category> findAllByParent(Category parent) {
