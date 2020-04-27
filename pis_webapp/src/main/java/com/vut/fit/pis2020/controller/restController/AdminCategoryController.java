@@ -6,6 +6,7 @@ import com.vut.fit.pis2020.converter.CategoryDtoConverter;
 import com.vut.fit.pis2020.dto.CategoryDto;
 import com.vut.fit.pis2020.dto.ProductCategoryDto;
 import com.vut.fit.pis2020.entity.Category;
+import com.vut.fit.pis2020.entity.Product;
 import com.vut.fit.pis2020.entity.ProductCategory;
 import com.vut.fit.pis2020.service.CategoryService;
 import com.vut.fit.pis2020.service.ProductService;
@@ -119,7 +120,10 @@ public class AdminCategoryController {
 
         ProductCategoryDto productCategoryDto = jsonObjectMapper.readValue(productCategoryJSON, ProductCategoryDto.class);
 
-        if(categoryService.findProductCategoryConnection(productCategoryDto.getProductId(), productCategoryDto.getCategoryId()) != null) {
+        Product product = productService.findById(productCategoryDto.getProductId());
+        Category category = categoryService.findById(productCategoryDto.getCategoryId());
+
+        if(categoryService.findProductCategoryConnection(product, category) != null) {
             returnCode.put("201", "Product is already added to category");
 
             return returnCode;
@@ -143,15 +147,16 @@ public class AdminCategoryController {
 
         ProductCategoryDto productCategoryDto = jsonObjectMapper.readValue(productCategoryJSON, ProductCategoryDto.class);
 
-        Long productCategoryId = categoryService.findProductCategoryConnection(productCategoryDto.getProductId(), productCategoryDto.getCategoryId());
+        Product product = productService.findById(productCategoryDto.getProductId());
+        Category category = categoryService.findById(productCategoryDto.getCategoryId());
 
-        if(productCategoryId == null) {
+        ProductCategory productCategory = categoryService.findProductCategoryConnection(product, category);
+
+        if(productCategory == null) {
             returnCode.put("201", "Product is already deleted from category");
 
             return returnCode;
         }
-
-        ProductCategory productCategory = categoryService.getProductCategory(productCategoryId);
 
         categoryService.removeProductFromCategory(productCategory);
 
