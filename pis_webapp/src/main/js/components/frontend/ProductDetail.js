@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {clearImages, updateImage, updateProduct} from "../../redux/actions/adminActions";
 import {addCartItem, clearCart, setActiveProductImage} from "../../redux/actions/frontendActions";
 import Button from 'react-bootstrap/Button';
+import {OverlayTrigger, Tooltip} from "react-bootstrap";
 
 class ProductDetail extends React.Component {
 
@@ -18,7 +19,8 @@ class ProductDetail extends React.Component {
         return {
             images: state.images.images,
             product: state.product.product,
-            activeImage: state.activeProductImage.image
+            activeImage: state.activeProductImage.image,
+            activeUser: state.activeUser.user
         }
     }
 
@@ -77,7 +79,7 @@ class ProductDetail extends React.Component {
         let cartItem = Object.assign({}, {
             amount: 1,
             productId: this.props.product.id,
-            userId: 2
+            userId: this.props.activeUser.id
         });
         await fetch('/api/cartitems/add', {
             method: 'POST',
@@ -91,6 +93,10 @@ class ProductDetail extends React.Component {
                 console.log(response);
             }
         );
+
+        cartItem = Object.assign({}, cartItem, {productDto: { id: this.props.product.id, primaryPhoto: null}});
+
+        this.props.addCartItem(cartItem);
 
     }
 
@@ -114,7 +120,11 @@ class ProductDetail extends React.Component {
                                     <h1>{this.props.product.name}</h1>
                                     <span className="price">{this.props.product.price}</span>
                                     <p className="description">{this.props.product.description}</p>
-                                    <Button onClick={this.addToCartHandler} variant="success"><i className="fas fa-cart-plus"/> Vložiť do košíka</Button>
+                                    {this.props.activeUser.id && <Button onClick={this.addToCartHandler} variant="success"><i className="fas fa-cart-plus"/> Vložiť do košíka</Button> }
+                                    {!this.props.activeUser.id &&
+                                    <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Nie ste prihlásený</Tooltip>}>
+                                        <Button disabled onClick={this.addToCartHandler} variant="success"><i className="fas fa-cart-plus"/> Vložiť do košíka</Button>
+                                    </OverlayTrigger>}
                                 </div>
                             </div>
                             <div className="specification-section">

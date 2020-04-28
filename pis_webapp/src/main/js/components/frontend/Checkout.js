@@ -18,7 +18,6 @@ class Checkout extends React.Component {
            city: null,
            code: null,
            note: null,
-           userID : 2
         });
         this.props.createOrder(order);
     }
@@ -26,7 +25,8 @@ class Checkout extends React.Component {
     static mapStateToProps = (state) => {
         return {
             order: state.order.order,
-            cartItemList: state.userCart.cartItemList
+            cartItemList: state.userCart.cartItemList,
+            activeUser: state.activeUser.user
         }
     }
 
@@ -72,6 +72,21 @@ class Checkout extends React.Component {
     render() {
         if (this.redirectToReferrer) {
             return <Redirect to="/order-detail/1" />
+        }
+        if (!this.props.activeUser.id) {
+            return(
+                <div>
+                    <Header/>
+                    <div id="main-content">
+                        <div id="content-holder">
+                            <Sidebar />
+                            <div id="cart">
+                                <span>Pre zobrazenie pokladne sa prosím prihláste.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
         }
         return(
             <div>

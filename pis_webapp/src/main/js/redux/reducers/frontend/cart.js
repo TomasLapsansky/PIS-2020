@@ -9,14 +9,14 @@ export default function (state = initialState, action) {
         case ADD_CART_ITEM:
             let exists = false;
             state.cartItemList.map(item => {
-                if (item.id === action.payload.cartItem.productId) {
+                if (item.productDto.id === action.payload.cartItem.productId) {
                     exists = true;
                 }
             });
             if (exists) {
                 return Object.assign({}, state, {
                     cartItemList: state.cartItemList.map( item => {
-                        if (item.productId === action.payload.cartItem.productId) {
+                        if (item.productDto.id === action.payload.cartItem.productId) {
                             return Object.assign({}, item, {amount: item.amount++});
                         }
                         else {

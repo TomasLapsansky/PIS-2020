@@ -29,3 +29,6 @@ export const CREATE_ORDER = 'CREATE_ORDER';
 export const CLEAR_ORDER = 'CLEAR_ORDER';
 
 export const UPDATE_LOGIN_USER = 'UPDATE_LOGIN_USER';
+
+export const USER_LOGIN = 'USER_LOGIN';
+export const USER_LOGOUT = 'USER_LOGOUT';
