@@ -60,4 +60,7 @@ public class homeController {
     @RequestMapping("/login")
     public String frontendLogin() { return "index"; }
 
+    @RequestMapping("/register")
+    public String frontendRegister() { return "index"; }
+
 }
