@@ -87,7 +87,6 @@ class Cart extends React.Component {
                                 </thead>
                                 <tbody>
                                 {this.props.cartItemList.map(item => {
-                                    console.log(item);
                                     return(
                                         <tr className="cart-item" key={item.id}>
                                             <td>

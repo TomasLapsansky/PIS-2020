@@ -88,6 +88,9 @@ div.admin-content {
 #admin-index div.admin-content {
   width: calc(100vw - 250px); }
 
+div.order-detail div.admin-content-list {
+  display: block; }
+
 header {
   display: flex !important;
   align-items: center;
@@ -240,6 +243,22 @@ div.product-box {
 #checkout {
   width: 100%;
   padding: 24px; }
+  #checkout div.col-md-6 {
+    padding: 0 12px; }
+  #checkout table.cart-list {
+    width: 100%; }
+    #checkout table.cart-list tr.cart-item {
+      border-top: 2px solid #eae4ee;
+      border-bottom: 2px solid #eae4ee; }
+      #checkout table.cart-list tr.cart-item img {
+        max-height: 100px;
+        max-width: 100px; }
+      #checkout table.cart-list tr.cart-item div.img-placeholder {
+        width: 100px;
+        height: 100px;
+        background: #e0e0e0; }
+      #checkout table.cart-list tr.cart-item i {
+        cursor: pointer; }
 
 #order-summary {
   display: flex;
@@ -269,5 +288,19 @@ div.product-box {
   justify-content: center;
   padding: 12px;
   width: 100%; }
+
+#my-account {
+  width: 100%;
+  padding: 12px; }
+  #my-account span {
+    display: block; }
+  #my-account table {
+    width: 100%; }
+  #my-account div.col-md-6 {
+    padding: 0; }
+
+#my-orders {
+  width: 100%;
+  padding: 12px; }
 
 /*# sourceMappingURL=main.css.map */

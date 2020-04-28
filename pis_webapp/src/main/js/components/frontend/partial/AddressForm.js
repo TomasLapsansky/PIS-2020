@@ -10,7 +10,8 @@ class AddressForm extends React.Component {
 
     static mapStateToProps = (state) => {
         return {
-            order: state.order.order
+            order: state.order.order,
+            activeUser: state.activeUser.user
         }
     }
 
@@ -48,24 +49,27 @@ class AddressForm extends React.Component {
                 <Form.Group>
                     <Label for="address">Ulica</Label>
                     <Input type="text" name="address" id="address"
-                       onChange={(e) => {this.handleChange(e)}} autoComplete="address-level1"/>
+                           onChange={(e) => {this.handleChange(e)}} autoComplete="address-level1"
+                           defaultValue={this.props.activeUser.address} />
                 </Form.Group>
                 <div className="row no-gutters">
                     <Form.Group className="col-md-6">
                         <Label for="city">Obec / Mesto</Label>
                         <Input type="text" name="city" id="city"
-                               onChange={(e) => {this.handleChange(e)}} autoComplete="address-level2"/>
+                               onChange={(e) => {this.handleChange(e)}} autoComplete="address-level2"
+                               defaultValue={this.props.activeUser.city} />
                     </Form.Group>
                     <Form.Group className="col-md-6">
                         <Label for="code">PSČ</Label>
                         <Input type="text" name="code" id="code"
-                               onChange={(e) => {this.handleChange(e)}} autoComplete="address-level3"/>
+                               onChange={(e) => {this.handleChange(e)}} autoComplete="address-level3"
+                               defaultValue={this.props.activeUser.code} />
                     </Form.Group>
                 </div>
                 <Form.Group>
                     <Label for="note">Poznámka</Label>
                     <Form.Control name="note" id="note" as="textarea" rows="3"
-                                  onChange={ (e) => {this.handleChange(e)}}/>
+                                  onChange={ (e) => {this.handleChange(e)}} />
                 </Form.Group>
                 <Form.Group>
                     <Button variant="success" type="submit">Dokončiť objednávku</Button>

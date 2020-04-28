@@ -53,8 +53,8 @@ class UserForm extends React.Component {
                     </FormGroup>
                 </div>
                 <FormGroup>
-                    <Button color="primary" type="submit">Save</Button>{' '}
-                    <Button color="secondary" tag={Link} to="/admin/users">Cancel</Button>
+                    <Button color="primary" type="submit">Uložiť</Button>{' '}
+                    <Button color="secondary" tag={Link} to="/admin/users">Zrušiť</Button>
                 </FormGroup>
             </Form>
         );

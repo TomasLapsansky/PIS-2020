@@ -50,7 +50,6 @@ class Header extends React.Component {
     }
 
     render() {
-        console.log(this.props.activeUser);
         return(
             <header>
                 <Link to="/">
@@ -65,7 +64,7 @@ class Header extends React.Component {
                     </div>
                     {this.props.activeUser.id &&
                     <div className="user">
-                        <span>Ahoj{' ' + this.props.activeUser.name + ' '}</span>
+                        <span>Ahoj<Link to="/my-account">{' ' + this.props.activeUser.name + ' '}</Link></span>
                         <Link onClick={ (e) => {this.logoutUser(e)}}>Odhlásiť</Link>
                     </div>
                     }

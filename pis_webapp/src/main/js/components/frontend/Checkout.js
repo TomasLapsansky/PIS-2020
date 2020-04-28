@@ -4,7 +4,7 @@ import Sidebar from "./partial/Sidebar";
 import {clearCart, clearOrder, createOrder} from "../../redux/actions/frontendActions";
 import AddressForm from "./partial/AddressForm";
 import {connect} from "react-redux";
-import {Redirect} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 class Checkout extends React.Component {
 
@@ -13,10 +13,11 @@ class Checkout extends React.Component {
         this.getProductThumbnail = this.getProductThumbnail.bind(this);
         this.handleOrderCreate = this.handleOrderCreate.bind(this);
         this.redirectToReferrer = false;
+        this.redirectReferrerId = null;
         const order = Object.assign({}, {
-           address: null,
-           city: null,
-           code: null,
+           address: this.props.activeUser.address,
+           city: this.props.activeUser.city,
+           code: this.props.activeUser.code,
            note: null,
         });
         this.props.createOrder(order);
@@ -33,7 +34,7 @@ class Checkout extends React.Component {
     getTotals() {
         let subTotal = 0;
         this.props.cartItemList.map(item => {
-            subTotal += item.price;
+            subTotal += (item.productDto.price * item.amount);
         });
         return subTotal;
     }
@@ -45,7 +46,7 @@ class Checkout extends React.Component {
     async handleOrderCreate(event) {
         event.preventDefault();
 
-        await fetch('/api/admin/products/create', {
+        await fetch('/api/order/checkout', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -54,24 +55,31 @@ class Checkout extends React.Component {
             body: JSON.stringify(this.props.order),
         }).then(
             response => {
-                console.log(response);
+                response.json().then(
+                    data => {
+                        let order = this.props.order;
+                        order = Object.assign({}, order, {id: data.id});
+                        this.props.createOrder(order);
+                    }
+                )
             }
         );
 
         console.log(this.props.order);
 
         this.props.clearCart();
-        this.props.clearOrder();
 
         this.redirectToReferrer = true;
 
-        this.forceUpdate();
+    }
 
+    componentWillUnmount() {
+        this.props.clearOrder();
     }
 
     render() {
         if (this.redirectToReferrer) {
-            return <Redirect to="/order-detail/1" />
+            return <Redirect to={"/order-detail/" + this.props.order.id} />
         }
         if (!this.props.activeUser.id) {
             return(
@@ -98,17 +106,35 @@ class Checkout extends React.Component {
                             <h2>Pokladňa</h2>
                             <div className="row no-gutters">
                                 <div className="col-md-6">
-                                    <ul>
+                                    <table className="cart-list">
+                                        <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Názov</th>
+                                            <th>Množstvo</th>
+                                            <th>Cena/ks</th>
+                                            <th>Cena celkom</th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
                                         {this.props.cartItemList.map(item => {
                                             return(
-                                                <li className="cart-item" key={item.id}>
-                                                    <img src={ (e) => this.getProductThumbnail(e, item.id)} alt=""/>
-                                                    <span>{item.name}</span>
-                                                    <span>{item.price}</span>
-                                                </li>
+                                                <tr className="cart-item" key={item.id}>
+                                                    <td>
+                                                        {item.productDto.primaryPhoto && <img src={item.productDto.primaryPhoto.file} alt=""/>}
+                                                        {!item.productDto.primaryPhoto && <div className="img-placeholder"/>}
+                                                    </td>
+                                                    <td><Link  to={'/product/'+item.productDto.id}>{item.productDto.name}</Link></td>
+                                                    <td><span>{item.amount}</span></td>
+                                                    <td><span>{item.productDto.price}</span></td>
+                                                    <td><span>{item.productDto.price * item.amount}</span></td>
+                                                    <td><a onClick={(e) => {this.handleDelete(e, item.id)}}><i className="fas fa-trash-alt"/></a></td>
+                                                </tr>
                                             )
                                         })}
-                                    </ul>
+                                        </tbody>
+                                    </table>
                                     <span>Cena celkom: {this.getTotals()}</span>
                                 </div>
                                 <div className="col-md-6">
