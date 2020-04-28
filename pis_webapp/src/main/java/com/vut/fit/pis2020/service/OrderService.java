@@ -16,6 +16,7 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
     private OrderItemRepository orderItemRepository;
 
     public Order findById(Long id) {
