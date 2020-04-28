@@ -73,7 +73,7 @@ INSERT INTO app_user (id, address, city, code, email, name, password, surname, r
    VALUES (8, 'Bozetechova 1', 'Brno', '85401', 'racek2@seznam.cz', 'Michal',
            'passwd', 'Racek', 4);
 INSERT INTO app_user (id, address, city, code, email, name, password, surname, role_id)
-   VALUES (9, 'Dolina ponikov', 'Nove mesto nad Vahom', '10770', 'pip@gmail.com', 'Rudolf',
+   VALUES (9, 'Dolina ponikov', 'Nove Mesto nad Vahom', '10770', 'pip@gmail.com', 'Rudolf',
            'passwd', 'Python', 4);
 INSERT INTO app_user (id, address, city, code, email, name, password, surname, role_id)
    VALUES (10, 'Mostovska 7', 'Komarno', '85401', 'bigBoy14@gmail.com', 'Joszef',
@@ -129,95 +129,95 @@ INSERT INTO discount (id, time_from, time_to, type, value)
            TIMESTAMP '2020-05-03 23:59:59', 1, 651.99);
 INSERT INTO discount (id, time_from, time_to, type, value)
    VALUES (5, TIMESTAMP '2020-04-01 11:32:14',
-           TIMESTAMP'2020-04-30 23:59:59', 1, 18.99);
+           TIMESTAMP '2020-04-30 23:59:59', 1, 18.99);
 
 -- Create products
-INSERT INTO product (id, available, description, name, price, specification)
-   VALUES (1, True, 'Kancelársky počítač Dell',
-   'Dell OptiPlex 3060 SFF', 542.90,
+INSERT INTO product (id, available, created, description, name, num_buys, price, specification)
+   VALUES (1, True, TIMESTAMP '2020-04-10 11:32:04', 'Kancelársky počítač Dell',
+   'Dell OptiPlex 3060 SFF', 0, 542.90,
    'Počítač Intel Core i3 8100 Coffee Lake, Intel UHD Graphics 630, RAM 8GBDDR4,
    SSD 256GB, DVD, HDMI a DisplayPort, 4× USB 3.2, 4× USB 2.0, typ skrine: Mini
    Tower, myš a klávesnica, Windows 10 Pro, (NBD).');
-INSERT INTO product (id, available, description, name, price, specification)
-   VALUES (2, True, 'Minipočítač Raspberry Pi na rôzne použitie.',
-   'Raspberry Pi 4 Model B - 4 GB RAM', 56.90,
+INSERT INTO product (id, available, created, description, name, num_buys, price, specification)
+   VALUES (2, True, TIMESTAMP '2020-04-10 11:33:41', 'Minipočítač Raspberry Pi na rôzne použitie.',
+   'Raspberry Pi 4 Model B - 4 GB RAM', 0, 56.90,
    'Mini PC Cortex-A72, VideoCore VI 3D , RAM 4GBLPDDR4, bez mechaniky, WiFi,
    2× USB 3.2, 2× USB 2.0, bez operačného systému.');
-INSERT INTO product (id, available, description, name, price, specification)
-   VALUES (3, True, 'Herný počítač',
-   'Acer Nitro N50-600', 836.10,
+INSERT INTO product (id, available, created, description, name, num_buys, price, specification)
+   VALUES (3, True, TIMESTAMP '2020-04-10 11:34:51', 'Herný počítač',
+   'Acer Nitro N50-600', 0, 836.10,
    'Herný PC Intel Core i7 9700 Coffee Lake 4.7 GHz, NVIDIA GeForce GTX 1650 4 GB,
    RAM 16GBDDR4, SSD 512GB+ HDD 1TB 7 200 ot./min, DVD, WiFi, DVI a HDMI,
    3× USB 3.2, 4× USB 2.0, typ skrine: Mini Tower, myš a klávesnica, Windows 10 Home.');
-INSERT INTO product (id, available, description, name, price, specification)
-   VALUES (4, True, 'Kancelársky počítač',
-   'Intel NUC 8i5BEH', 425.90,
+INSERT INTO product (id, available, created, description, name, num_buys, price, specification)
+   VALUES (4, True, TIMESTAMP '2020-04-10 11:36:12', 'Kancelársky počítač',
+   'Intel NUC 8i5BEH', 0, 425.90,
    'Mini PC Intel Core i5 8259U 2.3GHz Coffee Lake 3.8 GHz, Intel Iris Plus Graphic
    655 DDR4, bez mechaniky, WiFi, HDMI, 5× USB 3.2, bez operačného systému.');
-INSERT INTO product (id, available, description, name, price, specification)
-   VALUES (5, False, 'Kancelársky notebook',
-   'Acer Swift 1 Sakura Pink', 549.00,
+INSERT INTO product (id, available, created, description, name, num_buys, price, specification)
+   VALUES (5, False, TIMESTAMP '2020-04-10 11:37:32', 'Kancelársky notebook',
+   'Acer Swift 1 Sakura Pink', 0, 549.00,
    'Notebook – Intel Pentium Silver N5000 Gemini Lake, 14" IPS matný 1920 × 1080,
    RAM 8GB DDR4, Intel UHD Graphics 605, SSD 256GB, podsvietená klávesnica, webkamera,
    USB 3.2 Gen 1, USB-C, čítačka odtlačkov prstov, WiFi 802.11ac, 3-článková batéria
    54 Wh, Windows 10 Home (SF114-32-P8Z1).');
-INSERT INTO product (id, available, description, name, price, specification)
-   VALUES (6, False, 'Herný notebook',
-   'Lenovo Legion Y540-15IRH Black', 1089.00,
+INSERT INTO product (id, available, created, description, name, num_buys, price, specification)
+   VALUES (6, False, TIMESTAMP '2020-04-10 11:39:04', 'Herný notebook',
+   'Lenovo Legion Y540-15IRH Black', 0, 1089.00,
    'Herný notebook – Intel Core i5 9300H Coffee Lake, 15.6" IPS antireflexný 1920 × 1080
    144Hz, RAM 16GB DDR4, NVIDIA GeForce GTX 1660 Ti 6GB, SSD 1000GB, numerická klávesnica,
    podsvietená klávesnica, webkamera, USB-C, WiFi 802.11ac, 3-článková batéria 57 Wh,
    Windows 10 Home.');
-INSERT INTO product (id, available, description, name, price, specification)
-   VALUES (7, True, 'Macbook',
-   'MacBook Pro 16" SK Vesmírne sivý', 2699.00,
+INSERT INTO product (id, available, created, description, name, num_buys, price, specification)
+   VALUES (7, True, TIMESTAMP '2020-04-10 11:41:12', 'Macbook',
+   'MacBook Pro 16" SK Vesmírne sivý', 2, 2699.00,
    'MacBook – Intel Core i7 9750H Coffee Lake, 16" IPS lesklý 3072 × 1920, RAM 16GB DDR4,
    AMD Radeon Pro 5300M 4GB, SSD 512GB, podsvietená klávesnica, webkamera, USB-C, čítačka
    odtlačkov prstov, WiFi 802.11ac, 100 Wh batéria, MAC OS.');
-INSERT INTO product (id, available, description, name, price, specification)
-   VALUES (8, True, 'Operačný systém',
-   'Microsoft Windows 10 Home SK (FPP)', 119.90 ,
+INSERT INTO product (id, available, created, description, name, num_buys, price, specification)
+   VALUES (8, True, TIMESTAMP '2020-04-10 11:43:01', 'Operačný systém',
+   'Microsoft Windows 10 Home SK (FPP)', 0, 119.90 ,
    'Operačný systém - plná krabicová verzia, obsahuje USB flash disk pre 32-bit alebo 64-bit
    inštaláciu, slovenský, pre 1 počítač prenositeľná');
-INSERT INTO product (id, available, description, name, price, specification)
-   VALUES (9, True, 'Antivírusový softvér',
-   'ESET Family Security Pack pre 4 zariadenia na 18 mesiacov SK', 69.90 ,
+INSERT INTO product (id, available, created, description, name, num_buys, price, specification)
+   VALUES (9, True, TIMESTAMP '2020-04-10 11:44:58', 'Antivírusový softvér',
+   'ESET Family Security Pack pre 4 zariadenia na 18 mesiacov SK', 2, 69.90 ,
    'Bezpečnostný softvér –výhodný bezpečnostný balík pre celú rodinu, s ktorým ochránite až
    4 zariadenia s OS Windows, Android, macOS alebo Linux. Súčasťou balíka (voliteľne) je
    aj ESET Parental Control pre spoľahlivú ochranu vašich detí. Teraz ako darček e-kniha
    Spojení navždy o výchove deti v digitálnej dobe. Slovenská verzia.');
-INSERT INTO product (id, available, description, name, price, specification)
-   VALUES (10, True, 'Antivírusový softvér',
-   'Avast Business 12 mesiacov SK', 29.90 ,
+INSERT INTO product (id, available, created, description, name, num_buys, price, specification)
+   VALUES (10, True, TIMESTAMP '2020-04-10 11:46:44', 'Antivírusový softvér',
+   'Avast Business 12 mesiacov SK', 10, 29.90 ,
    'Bezpečnostný softvér Avast je oproti ESET-u slabý odvar, ale možno zaujme niektorých
    používateľov svojou cenou. Treba však myslieť na fakt, že málo peňazí = málo muziky.');
-INSERT INTO product (id, available, description, name, price, specification)
-   VALUES (11, True, 'High-end kávovar',
-   'De Longhi ECAM 370.95 T', 769.00 ,
+INSERT INTO product (id, available, created, description, name, num_buys, price, specification)
+   VALUES (11, True, TIMESTAMP '2020-04-12 18:32:09', 'High-end kávovar',
+   'De Longhi ECAM 370.95 T', 1, 769.00 ,
    'Automatický kávovar tlak 19 bar, mliečny systém, mlynček na kávu, príprava dvoch šálok
    naraz, displej, s parnou tryskou, nastavenie množstva vody, nastavenie množstva kávy,
    odkvapkávací systém, časovač, odvápňovací systém, samočistiaci systém a cappuccino a latte,
    objem nádržky na vodu 1.8 l, veľkosť zásobníka mlynčeka 300 g, príkon 1450 W, šírka
    23.6 cm, výška 34.8 cm, hĺbka 42.9 cm, hmotnosť 9.5 kg, farba strieborná, titán a sivá.');
-INSERT INTO product (id, available, description, name, price, specification)
-   VALUES (12, True, 'Low-cost kávovar',
-   'ROHNSON R-982 Perfect Crema', 95.00 ,
+INSERT INTO product (id, available, created, description, name, num_buys, price, specification)
+   VALUES (12, True, TIMESTAMP '2020-04-12 18:34:38', 'Low-cost kávovar',
+   'ROHNSON R-982 Perfect Crema', 0, 95.00 ,
    'Pákový kávovar tlak 20 bar, objem nádržky na vodu 1.6 l, príprava dvoch šálok naraz,
    s parnou tryskou, výškovo nastaviteľný podstavec, ohrievač šálok, odkvapkávací systém,
    režim úspory energie a cappuccino a latte, príkon 850 W, šírka 21.5 cm, výška 29 cm,
    hĺbka 25 cm, hmotnosť 3.65 kg, farba čierna a antikoro');
-INSERT INTO product (id, available, description, name, price, specification)
-   VALUES (13, True, 'Použitý telefón',
-   'Apple iPhone 11 pro max 256gb', 900.00 ,
+INSERT INTO product (id, available, created, description, name, num_buys, price, specification)
+   VALUES (13, True, TIMESTAMP '2020-04-12 18:37:54', 'Použitý telefón',
+   'Apple iPhone 11 pro max 256gb', 1, 900.00 ,
    'Iphone 11, včera kúpený, nezapnutý, nepoškriabaný. Ponúkame za rozumú cenu.');
-INSERT INTO product (id, available, description, name, price, specification)
-   VALUES (14, True, 'Refurbished notebook',
-   'Lenovo ThinkPad L440', 247.02 ,
+INSERT INTO product (id, available, created, description, name, num_buys, price, specification)
+   VALUES (14, True, TIMESTAMP '2020-04-12 18:41:15', 'Refurbished notebook',
+   'Lenovo ThinkPad L440', 0, 247.02 ,
    'Intel Pentium 3550M (2M Cache, 2.30 GHz), 4GB SO-DIMM DDR3, 500GB HDD, bez mechaniky,
    Intel HD Graphics, Windows 10 Professional 64-bit.');
-INSERT INTO product (id, available, description, name, price, specification)
-   VALUES (15, True, 'Refurbished workstation',
-   'HP ProDesk 600 G2 SFF', 293.47 ,
+INSERT INTO product (id, available, created, description, name, num_buys, price, specification)
+   VALUES (15, True, TIMESTAMP '2020-04-12 18:44:25', 'Refurbished workstation',
+   'HP ProDesk 600 G2 SFF', 0, 293.47 ,
    'Core i3 6100 3.7GHz/4GB RAM/128GB SSD + 500GB HDD
    DVD-RW-slim/Intel HD Graphics/Win 10 Pro 64-bit.');
 
@@ -267,7 +267,7 @@ INSERT INTO product_discount (id, discount_id, product_id)
 INSERT INTO product_discount (id, discount_id, product_id)
    VALUES (5, 5, 10);
    
--- Add some favourite products for users
+-- Add some favorite products for users
 INSERT INTO product_favorite(id, product_id, user_id)
    VALUES (1, 7, 0);
 INSERT INTO product_favorite(id, product_id, user_id)
@@ -427,17 +427,20 @@ INSERT INTO store_entity (id, amount, product_id, store_id)
       
 -- Add user orders
 INSERT INTO user_order (id, address, city, code, date, note, status, user_id)
-   VALUES (1, 'Mostovska 17', 'Komarno', '85401', '2020-04-20 16:05:06',
+   VALUES (1, 'Mostovska 17', 'Komarno', '85401', TIMESTAMP '2020-04-17 16:05:06',
            'Poprosim o rychlu dodavku.', 1, 10);
 INSERT INTO user_order (id, address, city, code, date, note, status, user_id)
-   VALUES (2, 'Mostovska 17', 'Komarno', '85401', '2020-04-17 17:10:56',
-           '', 1, 10);
+   VALUES (2, 'Mostovska 17', 'Komarno', '85401', TIMESTAMP '2020-04-18 17:10:56',
+           '', 2, 10);
 INSERT INTO user_order (id, address, city, code, date, note, status, user_id)
-   VALUES (3, 'Mostovska 17', 'Komarno', '85401', '2020-04-24 13:12:44',
-           'K vyzdvihnutiu az od 30.04.2020.', 1, 10);
+   VALUES (3, 'Mostovska 17', 'Komarno', '85401', TIMESTAMP '2020-04-20 13:12:44',
+           'K vyzdvihnutiu az od 30.04.2020.', 2, 10);
 INSERT INTO user_order (id, address, city, code, date, note, status, user_id)
-   VALUES (4, 'Razia c77', 'Sobrance', '41770', '2020-04-25 23:41:31',
-           'Rychlo rychlo rychlo.', 1, 7);
+   VALUES (4, 'Razia c77', 'Sobrance', '41770', TIMESTAMP '2020-04-23 23:41:31',
+           'Rychlo rychlo rychlo.', 3, 7);
+INSERT INTO user_order (id, address, city, code, date, note, status, user_id)
+   VALUES (5, 'Dolina ponikov', 'Nove Mesto nad Vahom', '10770',
+           TIMESTAMP '2020-04-25 20:35:12', 'Dúfam, že nebudem sklamaný.', 4, 9);
 
 -- Insert things that have been order into the order 
 INSERT INTO user_order_item (id, amount, price, order_id, product_id)
@@ -448,6 +451,8 @@ INSERT INTO user_order_item (id, amount, price, order_id, product_id)
    VALUES (3, 1, 651.99, 3, 11);
 INSERT INTO user_order_item (id, amount, price, order_id, product_id)
    VALUES (4, 10, 189.90, 4, 10);
+INSERT INTO user_order_item (id, amount, price, order_id, product_id)
+   VALUES (5, 2, 69.90, 5, 9);
 
 -- Add claims on orders
 INSERT INTO order_rma (id, date, note, status, user_id, order_id)
