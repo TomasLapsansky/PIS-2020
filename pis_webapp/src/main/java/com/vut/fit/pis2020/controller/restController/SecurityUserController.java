@@ -51,14 +51,6 @@ public class SecurityUserController {
 
         if(user == null) {
             userDto = new UserDto();
-//            userDto.setEmail(null);
-//            userDto.setName(null);
-//            userDto.setSurname(null);
-//            userDto.setPassword(null);
-//            userDto.setAddress(null);
-//            userDto.setCode(null);
-//            userDto.setCity(null);
-//            userDto.setId(null);
         } else {
             userDto = userDtoConverter.convertToUserDto(user);
         }
