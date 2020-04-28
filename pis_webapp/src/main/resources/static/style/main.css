@@ -256,4 +256,10 @@ div.product-box {
   padding: 12px;
   width: 100%; }
 
+#registration-page {
+  display: flex;
+  justify-content: center;
+  padding: 12px;
+  width: 100%; }
+
 /*# sourceMappingURL=main.css.map */

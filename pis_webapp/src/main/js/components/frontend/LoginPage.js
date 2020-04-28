@@ -4,6 +4,7 @@ import Header from "./partial/Header";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { updateLoginUser } from "../../redux/actions/frontendActions";
+import {Link} from "react-router-dom";
 
 class LoginPage extends React.Component {
 
@@ -70,7 +71,7 @@ class LoginPage extends React.Component {
                         <div id="login-page">
                             <Form onSubmit={ (e) => this.handleSubmit(e)} ref={fm => {this.form=fm}} >
                                 <Form.Group>
-                                    <Form.Label>Prihlasovacie meno</Form.Label>
+                                    <Form.Label>Email</Form.Label>
                                     <Form.Control type="text"
                                                   id="username"
                                                   name="username"
@@ -89,6 +90,7 @@ class LoginPage extends React.Component {
                                     <Button variant="primary" type="submit">Prihlásiť</Button>
                                 </Form.Group>
                             </Form>
+                            <span>Nemáte účet ? <Link to="/register">Vytvorte si ho!</Link></span>
                         </div>
                     </div>
                 </div>
