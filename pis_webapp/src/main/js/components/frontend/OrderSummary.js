@@ -12,7 +12,6 @@ class OrderSummary extends React.Component {
                 <Header/>
                 <div id="main-content">
                     <div id="content-holder">
-                        <Sidebar />
                         <div id="order-summary">
                             <h1>Vašu objednávku sme prijali !</h1>
                             <span>Číslo vašej objednávky : {this.props.match.params.id}</span>

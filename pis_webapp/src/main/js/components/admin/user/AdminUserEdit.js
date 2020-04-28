@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from '../Sidebar';
 import AdminSectionHeader from '../partial/AdminSectionHeader';
 import {connect} from "react-redux";
-import {loadUsers, updateUser} from "../../../redux/actions/adminActions";
+import {updateUser} from "../../../redux/actions/adminActions";
 import UserForm from "./partial/UserForm";
 
 class AdminUserEdit extends React.Component {

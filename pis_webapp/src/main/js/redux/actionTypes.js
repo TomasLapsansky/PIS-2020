@@ -32,3 +32,6 @@ export const UPDATE_LOGIN_USER = 'UPDATE_LOGIN_USER';
 
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
+
+export const LOAD_ORDER_LIST = 'LOAD_ORDER_LIST';
+export const LOAD_ORDER = 'LOAD_ORDER';

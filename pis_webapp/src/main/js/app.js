@@ -27,6 +27,11 @@ import AdminCategoryEdit from "./components/admin/category/AdminCategoryEdit";
 import AdminCategoryCreate from "./components/admin/category/AdminCategoryCreate";
 import LoginPage from "./components/frontend/LoginPage";
 import RegisterPage from "./components/frontend/RegisterPage";
+import MyAccount from "./components/frontend/MyAccount";
+import MyOrders from "./components/frontend/MyOrders";
+import MyOrderDetail from "./components/frontend/MyOrderDetail";
+import AdminOrderIndex from "./components/admin/order/AdminOrderIndex";
+import AdminOrderDetail from "./components/admin/order/AdminOrderDetail";
 
 
 class App extends React.Component { // <1>
@@ -61,6 +66,11 @@ class App extends React.Component { // <1>
                         <Route exact path="/admin/products/">
                             <AdminProductIndex />
                         </Route>
+                        <Route exact path="/admin/orders/:id"
+                               render = {props => <AdminOrderDetail {...props} /> } />
+                        <Route exact path="/admin/orders/">
+                            <AdminOrderIndex />
+                        </Route>
                         <Route path="/admin">
                             <AdminIndex/>
                         </Route>
@@ -75,6 +85,14 @@ class App extends React.Component { // <1>
                                render = {props => <CategoryProductList {...props} /> } />
                        <Route exact path="/cart">
                             <Cart/>
+                        </Route>
+                        <Route exact path="/my-account/orders/detail/:id"
+                               render = {props => <MyOrderDetail {...props} /> } />>
+                        <Route exact path="/my-account/orders">
+                            <MyOrders />
+                        </Route>
+                        <Route exact path="/my-account">
+                            <MyAccount />
                         </Route>
                         <Route exact path="/register">
                             <RegisterPage />
