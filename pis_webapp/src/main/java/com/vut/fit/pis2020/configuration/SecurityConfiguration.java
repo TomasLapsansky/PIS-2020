@@ -27,6 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         HttpMethod.GET,
                         "/index*", "/static/**", "/*.js", "/*.json", "/*.ico")
                 .permitAll()
+                .antMatchers("/admin/**").hasAnyAuthority("admin", "superadmin")
                 .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
