@@ -20,19 +20,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/**").permitAll();
+        /*http.authorizeRequests()
+                .antMatchers("/**").permitAll();*/
         http.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(
                         HttpMethod.GET,
                         "/index*", "/static/**", "/*.js", "/*.json", "/*.ico")
                 .permitAll()
+                .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login")
                 .loginProcessingUrl("/perform_login")
                 .defaultSuccessUrl("/",true)
-                .failureUrl("/login");
+                .failureUrl("/login")
+                .and()
+                .logout()
+                .logoutUrl("/logout").
+                logoutSuccessUrl("/");
         // TODO security
 
 

@@ -223,6 +223,10 @@ div.product-box {
       #cart table.cart-list tr.cart-item img {
         max-height: 100px;
         max-width: 100px; }
+      #cart table.cart-list tr.cart-item div.img-placeholder {
+        width: 100px;
+        height: 100px;
+        background: #e0e0e0; }
       #cart table.cart-list tr.cart-item i {
         cursor: pointer; }
   #cart span.price-total {

@@ -4,7 +4,7 @@ import {
     CLEAR_ORDER,
     CREATE_ORDER,
     LOAD_CATEGORIES, REMOVE_CART_ITEM,
-    SET_ACTIVE_PRODUCT_IMAGE, UPDATE_LOGIN_USER
+    SET_ACTIVE_PRODUCT_IMAGE, UPDATE_LOGIN_USER, USER_LOGIN, USER_LOGOUT
 } from "../actionTypes";
 
 export const loadCategories = categoryArray => ({
@@ -54,4 +54,5 @@ export const updateLoginUser = user => ({
         user: user
     }
 });
+
 

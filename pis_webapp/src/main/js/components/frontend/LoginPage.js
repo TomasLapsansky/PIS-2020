@@ -4,7 +4,7 @@ import Header from "./partial/Header";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { updateLoginUser } from "../../redux/actions/frontendActions";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 class LoginPage extends React.Component {
 
@@ -21,7 +21,8 @@ class LoginPage extends React.Component {
 
     static mapStateToProps = state => {
         return {
-            user: state.userLogin.user
+            user: state.userLogin.user,
+            activeUser: state.activeUser.user
         }
     }
 
@@ -63,6 +64,11 @@ class LoginPage extends React.Component {
     }
 
     render() {
+        if (this.props.activeUser.id) {
+            return(
+                <Redirect to="/"/>
+            );
+        }
         return(
             <div>
                 <Header/>
