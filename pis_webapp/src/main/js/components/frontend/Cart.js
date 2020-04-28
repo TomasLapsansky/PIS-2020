@@ -15,7 +15,8 @@ class Cart extends React.Component {
 
     static mapStateToProps = (state) => {
         return {
-            cartItemList: state.userCart.cartItemList
+            cartItemList: state.userCart.cartItemList,
+            activeUser: state.activeUser.user
         }
     }
 
@@ -50,6 +51,21 @@ class Cart extends React.Component {
     }
 
     render() {
+        if (!this.props.activeUser.id) {
+            return(
+                <div>
+                    <Header/>
+                    <div id="main-content">
+                        <div id="content-holder">
+                            <Sidebar />
+                            <div id="cart">
+                                <span>Pre zobrazenie košíka sa prosím prihláste.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
         return(
             <div>
                 <Header />
@@ -71,9 +87,13 @@ class Cart extends React.Component {
                                 </thead>
                                 <tbody>
                                 {this.props.cartItemList.map(item => {
+                                    console.log(item);
                                     return(
                                         <tr className="cart-item" key={item.id}>
-                                            <td><img src={item.productDto.primaryPhoto.file} alt=""/></td>
+                                            <td>
+                                                {item.productDto.primaryPhoto && <img src={item.productDto.primaryPhoto.file} alt=""/>}
+                                                {!item.productDto.primaryPhoto && <div className="img-placeholder"/>}
+                                            </td>
                                             <td><Link  to={'/product/'+item.productDto.id}>{item.productDto.name}</Link></td>
                                             <td><span>{item.amount}</span></td>
                                             <td><span>{item.productDto.price}</span></td>
