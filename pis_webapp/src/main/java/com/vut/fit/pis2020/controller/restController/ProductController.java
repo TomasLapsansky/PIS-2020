@@ -1,10 +1,13 @@
 package com.vut.fit.pis2020.controller.restController;
 
+import com.vut.fit.pis2020.converter.CategoryDtoConverter;
 import com.vut.fit.pis2020.converter.ProductDtoConverter;
+import com.vut.fit.pis2020.dto.CategoryDto;
 import com.vut.fit.pis2020.dto.ProductBasicDto;
 import com.vut.fit.pis2020.dto.ProductDetailDto;
 import com.vut.fit.pis2020.entity.Category;
 import com.vut.fit.pis2020.entity.Product;
+import com.vut.fit.pis2020.entity.ProductCategory;
 import com.vut.fit.pis2020.service.CategoryService;
 import com.vut.fit.pis2020.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,9 @@ public class ProductController {
 
     @Autowired
     private ProductDtoConverter productDtoConverter;
+
+    @Autowired
+    private CategoryDtoConverter categoryDtoConverter;
 
     @GetMapping("/api/products/{productId}")
     public ProductDetailDto getProductDetail(@PathVariable("productId") Long productId) {
@@ -81,5 +87,21 @@ public class ProductController {
         }
 
         return productBasicDtos;
+    }
+
+    @GetMapping("/api/products/{productId}/categories")
+    public List<CategoryDto> getProductCategories(@PathVariable("productId") Long productId) {
+
+        Product product = productService.findById(productId);
+
+        List<ProductCategory> productCategories = product.getProductCategories();
+
+        List<CategoryDto> categoriesDto = new ArrayList<>();
+
+        for(ProductCategory productCategory: productCategories) {
+            categoriesDto.add(categoryDtoConverter.convertToCategoryDto(productCategory.getCategory()));
+        }
+
+        return categoriesDto;
     }
 }
