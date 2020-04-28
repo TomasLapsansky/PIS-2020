@@ -43,17 +43,27 @@ public class SecurityUserController {
     private SecurityUserDetailsService securityUserDetailsService;
 
     @GetMapping("/api/user/details")
-    public List<Object> getUser() {
-        List<Object> ret = new ArrayList<>();
+    public UserDto getUser() {
         Authentication authentication = authenticationFacade.getAuthentication();
 
-        ret.add(authentication.getName());
-        ret.add(authentication.getDetails());
-        ret.add(authentication.getAuthorities());
-        ret.add(authentication.getCredentials());
-        ret.add(authentication.getPrincipal());
+        User user = userService.findByEmail(authentication.getName());
+        UserDto userDto = null;
 
-        return ret;
+        if(user == null) {
+            userDto = new UserDto();
+//            userDto.setEmail(null);
+//            userDto.setName(null);
+//            userDto.setSurname(null);
+//            userDto.setPassword(null);
+//            userDto.setAddress(null);
+//            userDto.setCode(null);
+//            userDto.setCity(null);
+//            userDto.setId(null);
+        } else {
+            userDto = userDtoConverter.convertToUserDto(user);
+        }
+
+        return userDto;
     }
 
     @PostMapping("/api/user/register")
