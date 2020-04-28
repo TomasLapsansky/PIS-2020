@@ -10,7 +10,7 @@ class LandingPage extends React.Component {
     static mapStateToProps = state => { return {productList: state.productList.products} }
 
     async componentDidMount() {
-        const ProductList = await fetch('/api/categories/1/products');
+        const ProductList = await fetch('/api/products/new');
         const body = await ProductList.json();
         this.props.loadProductList(body);
     }
@@ -23,6 +23,7 @@ class LandingPage extends React.Component {
                     <div id="content-holder">
                         <Sidebar />
                         <div id="landing-page" className="content-area">
+                            <h2>Najnovšie produkty</h2>
                             <ProductList />
                         </div>
                     </div>

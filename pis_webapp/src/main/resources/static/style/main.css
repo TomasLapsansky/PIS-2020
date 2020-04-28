@@ -176,6 +176,10 @@ div.product-box {
     height: 210px;
     background: #e0e0e0; }
 
+#landing-page h2 {
+  padding: 12px;
+  margin: 0; }
+
 #product-detail {
   display: flex;
   flex-flow: column; }
