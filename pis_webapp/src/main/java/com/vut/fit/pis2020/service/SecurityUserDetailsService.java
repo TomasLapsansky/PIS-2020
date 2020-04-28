@@ -33,7 +33,7 @@ public class SecurityUserDetailsService implements UserDetailsService {
     }
 
     private static Collection<? extends GrantedAuthority> getAuthorities(User user) {
-        String userRole = Long.toString(user.getRole().getId());
+        String userRole = user.getRole().getName();
         return AuthorityUtils.createAuthorityList(userRole);
     }
 }
