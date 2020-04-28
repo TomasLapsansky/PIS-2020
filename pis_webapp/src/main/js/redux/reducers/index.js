@@ -12,6 +12,7 @@ import categoryListSidebar from "./frontend/categoriesSidebar";
 import order from "./frontend/order";
 import categoryList from "./admin/categoryList";
 import category from "./admin/category";
+import userLogin from "./frontend/userLogin"
 
 export default combineReducers(
 { sidebar,
@@ -25,5 +26,6 @@ export default combineReducers(
         categoryListSidebar,
         activeProductImage,
         userCart,
-        order
+        order,
+        userLogin
     });
