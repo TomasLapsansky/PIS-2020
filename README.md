@@ -28,4 +28,3 @@
 
 ## What next ?
 - somehow deploy war file to docker container after every package to keep app up-to-date automatically
-- rework database models and verify communication
