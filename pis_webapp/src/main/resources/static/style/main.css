@@ -90,6 +90,13 @@ div.admin-content {
 
 div.order-detail div.admin-content-list {
   display: block; }
+  div.order-detail div.admin-content-list span {
+    display: block; }
+
+div.product-create img {
+  max-width: 300px;
+  max-height: 300px;
+  padding: 12px; }
 
 header {
   display: flex !important;
@@ -164,7 +171,8 @@ div.product-box {
   padding: 20px;
   -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15); }
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
+  margin-bottom: 24px; }
   div.product-box div.img-holder {
     display: flex;
     width: 210px;

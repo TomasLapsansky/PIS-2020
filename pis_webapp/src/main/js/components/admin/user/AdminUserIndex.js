@@ -68,7 +68,6 @@ class AdminUserIndex extends React.Component {
                                         <td>{user.role}</td>
                                         <td>
                                             <a href={'admin/users/edit/'+user.id}><i className="fas fa-edit"></i></a>
-                                            <a onClick={() => {this.handleDelete(user.id)}}><i className="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 )
