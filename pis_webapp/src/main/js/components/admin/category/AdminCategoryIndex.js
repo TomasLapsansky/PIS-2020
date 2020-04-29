@@ -72,7 +72,7 @@ class AdminCategoryIndex extends React.Component {
                                         <td>{this.props.parentCategoryId}</td>
                                         <td>
                                             <a href={'admin/categories/edit/'+category.id}><i className="fas fa-edit"/></a>
-                                            <a onClick={() => {this.handleDelete(category.id)}}><i className="fas fa-trash-alt"/></a>
+                                            <a onClick={(e) => {this.handleDelete(e, category.id)}}><i className="fas fa-trash-alt"/></a>
                                         </td>
                                     </tr>
                                 )

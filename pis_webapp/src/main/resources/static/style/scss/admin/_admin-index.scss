@@ -9,5 +9,19 @@
 div.order-detail {
   div.admin-content-list {
     display: block;
+
+    span {
+      display: block;
+    }
   }
+}
+
+div.product-create {
+
+  img {
+    max-width: 300px;
+    max-height: 300px;
+    padding: 12px;
+  }
+
 }

@@ -68,7 +68,6 @@ class AdminOrderDetail extends React.Component {
                 <div className="admin-content order-detail">
                     <AdminSectionHeader pageTitle="Detail objednávky" create={false} />
                     <div className="admin-content-list">
-                        <h2>Detail objednávky</h2>
                         <span>Číslo objednávky: {this.props.order.id || ''}</span>
                         <Form>
                             <Form.Group>
@@ -83,6 +82,12 @@ class AdminOrderDetail extends React.Component {
                                 </Form.Control>
                             </Form.Group>
                         </Form>
+                        <h4>Detail zákazníka:</h4>
+                        <span>{this.props.order.user.name + ' ' + this.props.order.user.surname}</span>
+                        <span>{this.props.order.user.email}</span>
+                        <span>{this.props.order.address + ' , ' + this.props.order.city + ',' + this.props.order.code}</span>
+                        <h4>Poznámka k objednávke</h4>
+                        <span>{this.props.order.note}</span>
                         <table>
                             <thead>
                             <tr>

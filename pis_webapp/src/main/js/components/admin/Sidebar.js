@@ -22,9 +22,6 @@ class Sidebar extends React.Component {
                     <li className={(this.props.activeItem === 2) ? 'active' : ''}>
                         <Link to="/admin/categories">Kategórie</Link>
                     </li>
-                    <li className={(this.props.activeItem === 3) ? 'active' : ''}>
-                        <Link to="/admin/discounts">Zľavy</Link>
-                    </li>
                     <li className={(this.props.activeItem === 4) ? 'active' : ''}>
                         <Link to="/admin/orders">Objednávky</Link>
                     </li>

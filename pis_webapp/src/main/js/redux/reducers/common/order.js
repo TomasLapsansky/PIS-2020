@@ -2,7 +2,8 @@ import {LOAD_ORDER} from "../../actionTypes";
 
 const initialState = {
     order: {
-        orderItemsDto: []
+        orderItemsDto: [],
+        user: {}
     }
 };
 
